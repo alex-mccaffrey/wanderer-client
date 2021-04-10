@@ -1,11 +1,28 @@
+import React from 'react'
+import "./Home.css";
+//import Context, {Consumer} from "../Context"
 
-import './Home.css';
 
 function Home() {
+
+
   return (
+    
     <div className="Home">
-      <h2>Home Page</h2>
+      <h1>Welcome Group</h1>
+      <section>
+        <h2>Here are the members</h2>
+        <p>This is where a list of the group members will be</p>
+      </section>
+      <section>
+        <h2>Recent locations</h2>
+        <p>
+          This is where the most recent location pins will be listed, showing
+          who it was, where they were, and the time it was logged.
+        </p>
+      </section>
     </div>
+    
   );
 }
 

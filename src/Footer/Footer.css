@@ -1,0 +1,12 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #BDC2BF;
+    min-height: 55px;
+    width: 100%;
+    overflow: hidden;
+}

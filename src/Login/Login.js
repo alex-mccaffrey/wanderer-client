@@ -2,9 +2,21 @@ import './Login.css';
 
 function Login() {
   return (
-    <div className="Login">
-      <h2>Login Page</h2>
-    </div>
+    <section className="login">
+    <h3>Sign In</h3>
+
+        <form class='login-form'>
+          <div>
+              <label for="username">Email</label>
+              <input type="text" name='username' id='username' />
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input type="password" name='password' id='password' />
+            </div>
+            <button type='submit'>Sign Up</button>
+        </form>
+      </section>
   );
 }
 
