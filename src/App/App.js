@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
@@ -7,7 +7,9 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Home from "../Home/Home";
 import AddLocation from "../AddLocation/AddLocation";
+import Logo from "../images/wanderer-logo.png"
 import "./App.css";
+
 import { Provider } from "../Context";
 
  
@@ -18,7 +20,8 @@ const App = () => {
   return (
     <div className="App">
       <Provider value={user}>
-        <header className="App-header">
+        <header className="App-header" >
+          
           <NavBar />
         </header>
         <main>
