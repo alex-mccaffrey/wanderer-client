@@ -15,24 +15,41 @@ import { Provider } from "../Context";
  
 const App = () => {
 
-  const user = { name: 'Alex', loggedIn: true }
+  const [user, setUser] = useState({ userName: null})
+
+  const [loggedIn, setLoggedIn] = useState({loggedIn: false})
+  
+  const storeUser = user => {
+    localStorage.setItem("user", user.userName);
+    setUser(user)
+  }
+
+  const logout = () => {
+    localStorage.clear()
+    setUser({userName: null})
+  }
+
+console.log(localStorage)
 
   return (
     <div className="App">
-      <Provider value={user}>
         <header className="App-header" >
           
           <NavBar />
         </header>
         <main>
           <Route exact path="/" component={Landing} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/home" component={Home} />
+          <Route 
+          path="/register" 
+          render={(props) => (<Register {...props} storeUser={storeUser} />)}
+          />
+          <Route path="/login" 
+          render={(props) => (<Login {...props} loggedIn={setLoggedIn} />)}
+          />
+          <Route path="/home" component={Home} user={user}/>
           <Route path="/add-location" component={AddLocation} />
         </main>
         <Footer />
-      </Provider>
     </div>
   );
 }

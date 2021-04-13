@@ -5,6 +5,7 @@ import Logo from "../images/wanderer-logo.png"
 import "./NavBar.css";
 
 const NavBar = () => {
+    
   return (
     <nav>
         <img src={Logo} width="100%" height="auto"/>

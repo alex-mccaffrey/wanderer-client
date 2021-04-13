@@ -1,6 +1,5 @@
-import React from 'react'
 
-const FindUser = () => {
+export const FindUser = () => {
 
         const status = document.querySelector('#status');
         const mapLink = document.querySelector('#map-link');
@@ -15,6 +14,8 @@ const FindUser = () => {
           status.textContent = '';
           mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
           mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+
+          document.getElementById('latlong').textContent = `${latitude}, ${longitude}`;
         }
       
         function error() {
@@ -33,4 +34,4 @@ const FindUser = () => {
       document.querySelector('#find-me').addEventListener('click', FindUser);
 }
 
-export default FindUser
+

@@ -3,13 +3,15 @@ import "./Home.css";
 //import Context, {Consumer} from "../Context"
 
 
-function Home() {
+const Home = props => {
+
+const user = props.user 
 
 
   return (
     
     <div className="Home">
-      <h1>Welcome Group</h1>
+      <h1>Hello {user}</h1>
       <section>
         <h2>Here are the members</h2>
         <p>This is where a list of the group members will be</p>

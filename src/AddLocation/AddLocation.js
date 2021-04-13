@@ -1,49 +1,68 @@
-import React from "react";
-//import FindUser from "../FindUser/FindUser";
+import React, { useState }  from "react";
+import { FindUser }  from "../services/FindUser";
+//import GetAddress from "../services/GetAddress";
 import "./AddLocation.css";
 
 function AddLocation() {
 
-  const FindUser = () => {
+  const findUser = FindUser;
 
-    const status = document.querySelector('#status');
-    const mapLink = document.querySelector('#map-link');
-  
-    mapLink.href = '';
-    mapLink.textContent = '';
-  
-    function success(position) {
-      const latitude  = position.coords.latitude;
-      const longitude = position.coords.longitude;
-  
-      status.textContent = '';
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-    }
-  
-    function error() {
-      status.textContent = 'Unable to retrieve your location';
-    }
-  
-    if(!navigator.geolocation) {
-      status.textContent = 'Geolocation is not supported by your browser';
-    } else {
-      status.textContent = 'Locating…';
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-  
-  
-  
-  document.querySelector('#find-me').addEventListener('click', FindUser);
-}
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("")
+
+  const handleSubmit = (e) => {
+    console.log("this is the name:", name)
+  }
+
+  const getLocation = () => {
+    setLocation(findUser())
+    console.log(location)
+  }
+
 
   return (
     <div className="AddLocation">
       <h2>Add Location</h2>
-      <button id="find-me" onClick={() => {FindUser()}}>Show my location</button>
-      <br />
-      <p id="status"></p>
-      <a id="map-link" target="_blank"></a>
+      <form id="new-location" onSubmit={handleSubmit}>
+        <section className="form-section overview-section">
+          <label htmlFor="who" className="who">
+            Name
+          </label>
+          <br />
+          <input
+            type="text"
+            name="who"
+            placeholder="Put your name here"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </section>
+        <button
+          id="find-me"
+          onClick={() => {
+          getLocation();
+          }}
+        >
+          Show my location
+        </button>
+        {/* <button
+          id="convert-latlong"
+          onClick={() => {
+          convertLatlong();
+          }}
+        >
+          What's my address?
+        </button> */}
+        <br />
+        <p id="status"></p>
+        <p id="latlong"></p>
+        <p id="address"></p>
+        <a id="map-link" target="_blank"></a>
+
+        <button type="submit">Submit</button>
+        
+      </form>
     </div>
   );
 }
