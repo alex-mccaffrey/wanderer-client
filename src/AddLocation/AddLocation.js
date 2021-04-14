@@ -11,12 +11,13 @@ function AddLocation() {
   const [location, setLocation] = useState("")
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     console.log("this is the name:", name)
   }
 
   const getLocation = () => {
     setLocation(findUser())
-    console.log(location)
+    console.log("this is the location", location)
   }
 
 
@@ -59,7 +60,7 @@ function AddLocation() {
         <p id="latlong"></p>
         <p id="address"></p>
         <a id="map-link" target="_blank"></a>
-
+        <br/>
         <button type="submit">Submit</button>
         
       </form>

@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Home.css";
+import Map from "../images/map-pins.jpg"
 //import Context, {Consumer} from "../Context"
 
 
@@ -14,7 +15,7 @@ const user = props.user
       <h1>Hello {user}</h1>
       <section>
         <h2>Here are the members</h2>
-        <p>This is where a list of the group members will be</p>
+        <p>This is where a list of the group members will be.</p>
       </section>
       <section>
         <h2>Recent locations</h2>
@@ -22,6 +23,7 @@ const user = props.user
           This is where the most recent location pins will be listed, showing
           who it was, where they were, and the time it was logged.
         </p>
+        <img src={Map} alt="map with pins"></img>
       </section>
     </div>
     

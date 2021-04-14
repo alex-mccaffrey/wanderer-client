@@ -32,6 +32,7 @@ const App = () => {
 console.log(localStorage)
 
   return (
+    
     <div className="App">
         <header className="App-header" >
           
@@ -51,6 +52,8 @@ console.log(localStorage)
         </main>
         <Footer />
     </div>
+    
+    
   );
 }
 
