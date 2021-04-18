@@ -1,5 +1,6 @@
 import React, { useState }  from "react";
 import { FindUser }  from "../services/FindUser";
+import AddLocationExample from "../images/add-location-example.jpeg"
 //import GetAddress from "../services/GetAddress";
 import "./AddLocation.css";
 
@@ -9,6 +10,7 @@ function AddLocation() {
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("")
+  const [notes, setNotes] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +40,17 @@ function AddLocation() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <br/>
+          <input
+        type="text"
+        name="notes"
+        placeholder="Share some details"
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+        />
         </section>
+        
+        <br/>
         <button
           id="find-me"
           onClick={() => {
@@ -47,6 +59,9 @@ function AddLocation() {
         >
           Show my location
         </button>
+        <section>
+          <img src={AddLocationExample} width="330px"></img>
+        </section>
         {/* <button
           id="convert-latlong"
           onClick={() => {
