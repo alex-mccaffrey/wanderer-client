@@ -60,7 +60,7 @@ function AddLocation() {
           Show my location
         </button>
         <section>
-          <img src={AddLocationExample} width="330px"></img>
+          <img src={AddLocationExample} width="330px" alt="add location map placeholder"></img>
         </section>
         {/* <button
           id="convert-latlong"
