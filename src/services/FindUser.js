@@ -1,4 +1,4 @@
-import Geocode from "react-geocode";
+//import Geocode from "react-geocode";
 require('dotenv').config();
 
 export const FindUser = () => {
@@ -19,7 +19,6 @@ export const FindUser = () => {
     document.getElementById(
       "latlong"
     ).textContent = `${latitude}, ${longitude}`;
-
 
     //Geocode.setApiKey(PROCESS.ENV.REACT_APP_GOOGLE_API_KEY)
 
