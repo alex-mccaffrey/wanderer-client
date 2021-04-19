@@ -35,7 +35,6 @@ console.log(localStorage)
     
     <div className="App">
         <header className="App-header" >
-          
           <NavBar />
         </header>
         <main>
@@ -52,8 +51,6 @@ console.log(localStorage)
         </main>
         <Footer />
     </div>
-    
-    
   );
 }
 
