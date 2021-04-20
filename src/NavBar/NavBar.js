@@ -8,8 +8,11 @@ const NavBar = () => {
     
   return (
     <nav>
-        <img src={Logo} width="100%" height="auto"/>
-      <Link className="nav-link" to="/">
+      <section className="logo">
+        <img src={Logo} width="200px"/>
+      </section>
+      <ul className="navbar-links">
+      <Link className="nav-link" exact to="/">
         Landing
       </Link>
       <Link className="nav-link" to="/home">
@@ -24,6 +27,7 @@ const NavBar = () => {
       <Link className="nav-link" to="/add-location">
         Add Location
       </Link>
+      </ul>
     </nav>
   );
 };

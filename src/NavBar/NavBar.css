@@ -1,15 +1,27 @@
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  /* padding: 1% 0;
-  padding: 20px; */
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
+  background-color: #afbda2;
 }
 
 .nav-link {
-  margin: 5px 8px;
+  margin: 5px 8px;  
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-links {
+  display: flex;
+
+}
+
+.logo {
+  display: flex;
+  width: 100px;
 }

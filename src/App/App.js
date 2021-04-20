@@ -35,7 +35,7 @@ console.log(localStorage)
     
     <div className="App">
         <header className="App-header" >
-          <NavBar />
+          <Route path="/" component={NavBar}/>
         </header>
         <main>
           <Route exact path="/" component={Landing} />
