@@ -1,28 +1,39 @@
 import React, { useState, useEffect } from 'react'
+import authApiService from '../services/auth-api-service';
 import "./Register.css";
 
 function Register(props) {
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [error, setError] = useState("")
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.storeUser({username, password})
+    const {username, password, confirmPassword} = e.target
+    setError(null)
+    authApiService.postUser({
+      username: username.value,
+      password: password.value
+    }).then(user => {
+      props.history.push('/login')
+    }).catch(res => {
+      setError(res.error)
+    })
   }
 
   return (
     <section className="register">
       <h3>Register</h3>
       <form className="signup-form" onSubmit={handleSubmit}>
+        {error && <p className="error">{error}</p>}
         <div>
-          <label htmlFor="group-name">Group Username</label>
+          <label htmlFor="username">Group Username</label>
           <input
-            placeholder="Group Name"
+            placeholder="Group Username"
             type="text"
-            name="group-name"
-            id="group-name"
-            onChange={e => setUsername(e.target.value)}
+            name="username"
+            id="username"
+            defaultValue="Demo"
           />
         </div>
         <div>
@@ -31,14 +42,16 @@ function Register(props) {
           type="password" 
           name="password" 
           id="password"
-          onChange={e => setPassword(e.target.value)} />
+          defaultValue="DemoPassword123!"
+          />
         </div>
         <div>
           <label htmlFor="confirm-password">Confirm Password</label>
           <input
             type="password"
-            name="confirm-password"
+            name="confirmPassword"
             id="confirm-password"
+            defaultValue="DemoPassword123!"
           />
         </div>
         <button type="submit">Register</button>

@@ -10,9 +10,6 @@ import AddLocation from "../AddLocation/AddLocation";
 import Logo from "../images/wanderer-logo.png"
 import "./App.css";
 
-import { Provider } from "../Context";
-
- 
 const App = () => {
 
   // const [user, setUser] = useState({ userName: null})
@@ -42,7 +39,8 @@ const App = () => {
           render={(props) => (<Login {...props}/>)}
           />
           <Route path="/home" component={Home}/>
-          <Route path="/add-location" component={AddLocation} />
+          <Route path="/add-location" component={AddLocation} 
+          />
         </main>
         <Footer />
     </div>
