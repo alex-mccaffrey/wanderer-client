@@ -1,33 +1,62 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../images/wanderer-logo.png"
+import Logo from "../images/wanderer-logo.png";
+import TokenService from "../services/token-service";
 
 import "./NavBar.css";
 
-const NavBar = () => {
-    
+const NavBar = (props) => {
+  const logout = (e) => {
+    TokenService.clearAuthToken();
+    props.history.push("/");
+  };
+
   return (
     <nav>
-      <section className="logo">
-        <img src={Logo} width="200px"/>
-      </section>
-      <ul className="navbar-links">
-      <Link className="nav-link" exact to="/">
-        Landing
-      </Link>
-      <Link className="nav-link" to="/home">
-        Home
-      </Link>
-      <Link className="nav-link" to="/login">
-        Login
-      </Link>
-      <Link className="nav-link" to="/register">
-        Register
-      </Link>
-      <Link className="nav-link" to="/add-location">
-        Add Location
-      </Link>
-      </ul>
+      
+        {TokenService.hasAuthToken() ? (
+          <>
+            <section className="logo">
+              <a href="/home">
+                <img src={Logo} width="200px" />
+              </a>
+            </section>
+            <ul className="navbar-links">
+            <Link className="nav-link" onClick={logout}>
+              Logout
+            </Link>
+
+            <Link className="nav-link" to="/home">
+              Home
+            </Link>
+
+            <Link className="nav-link" to="/add-location">
+              Add Location
+            </Link>
+            </ul>
+          </>
+        ) : (
+          <>
+            <section className="logo">
+              <a href="/">
+                <img src={Logo} width="200px" />
+              </a>
+            </section>
+            <ul className="navbar-links">
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+
+            <Link className="nav-link" to="/register">
+              Register
+            </Link>
+
+            <Link className="nav-link" exact to="/">
+              Landing
+            </Link>
+            </ul>
+          </>
+        )}
     </nav>
   );
 };

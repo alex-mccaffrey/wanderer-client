@@ -15,38 +15,33 @@ import { Provider } from "../Context";
  
 const App = () => {
 
-  const [user, setUser] = useState({ userName: null})
+  // const [user, setUser] = useState({ userName: null})
 
-  const [loggedIn, setLoggedIn] = useState({loggedIn: false})
+  // const [loggedIn, setLoggedIn] = useState({loggedIn: false})
   
-  const storeUser = user => {
-    localStorage.setItem("user", user.userName);
-    setUser(user)
-  }
+  // const storeUser = user => {
+  //   localStorage.setItem("user", user.userName);
+  //   setUser(user)
+  // }
 
-  const logout = () => {
-    localStorage.clear()
-    setUser({userName: null})
-  }
 
-console.log(localStorage)
 
   return (
     
     <div className="App">
         <header className="App-header" >
-          <Route path="/" component={NavBar}/>
+          <Route path="/" render={(props) => (<NavBar {...props}/>)}/>
         </header>
         <main>
           <Route exact path="/" component={Landing} />
           <Route 
           path="/register" 
-          render={(props) => (<Register {...props} storeUser={storeUser} />)}
+          render={(props) => (<Register {...props}/>)}
           />
           <Route path="/login" 
-          render={(props) => (<Login {...props} loggedIn={setLoggedIn} />)}
+          render={(props) => (<Login {...props}/>)}
           />
-          <Route path="/home" component={Home} user={user}/>
+          <Route path="/home" component={Home}/>
           <Route path="/add-location" component={AddLocation} />
         </main>
         <Footer />
