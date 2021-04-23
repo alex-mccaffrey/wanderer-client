@@ -7,9 +7,21 @@ function Register(props) {
 
   const [error, setError] = useState("")
 
+  const matchPassword = (e) => {
+    const { password, confirmPassword} = e.target
+    setError(null)
+    if(password !== confirmPassword ){
+      return ({
+        error: `Password doesn't match`
+      })
+    }
+      else { return password }
+    }
+
   const handleSubmit = e => {
     e.preventDefault();
-    const {username, password, confirmPassword} = e.target
+    matchPassword(e);
+    const {username, password} = e.target
     setError(null)
     authApiService.postUser({
       username: username.value,
@@ -25,7 +37,7 @@ function Register(props) {
     <section className="register">
       <h3>Register</h3>
       <form className="signup-form" onSubmit={handleSubmit}>
-        {error && <p className="error">{error}</p>}
+        {error && <p className="error" style={{color: 'red'}}>{error}</p>}
         <div>
           <label htmlFor="username">Group Username</label>
           <input
@@ -33,7 +45,7 @@ function Register(props) {
             type="text"
             name="username"
             id="username"
-            defaultValue="Demo"
+            //defaultValue="Demo"
           />
         </div>
         <div>
@@ -42,7 +54,7 @@ function Register(props) {
           type="password" 
           name="password" 
           id="password"
-          defaultValue="DemoPassword123!"
+          //defaultValue="DemoPassword123!"
           />
         </div>
         <div>
@@ -51,7 +63,7 @@ function Register(props) {
             type="password"
             name="confirmPassword"
             id="confirm-password"
-            defaultValue="DemoPassword123!"
+            //defaultValue="DemoPassword123!"
           />
         </div>
         <button type="submit">Register</button>

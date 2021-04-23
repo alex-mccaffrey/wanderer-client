@@ -22,7 +22,7 @@ const NavBar = (props) => {
               </a>
             </section>
             <ul className="navbar-links">
-            <Link className="nav-link" onClick={logout}>
+            <Link className="nav-link" to="/" onClick={logout}>
               Logout
             </Link>
 
@@ -51,7 +51,7 @@ const NavBar = (props) => {
               Register
             </Link>
 
-            <Link className="nav-link" exact to="/">
+            <Link className="nav-link" to="/">
               Landing
             </Link>
             </ul>
