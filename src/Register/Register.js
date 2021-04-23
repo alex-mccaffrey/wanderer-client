@@ -1,43 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import authApiService from '../services/auth-api-service';
+import React, { useState, useEffect } from "react";
+import authApiService from "../services/auth-api-service";
 import "./Register.css";
 
 function Register(props) {
+  const [error, setError] = useState("");
 
-
-  const [error, setError] = useState("")
-
-  const matchPassword = (e) => {
-    const { password, confirmPassword} = e.target
-    setError(null)
-    if(password !== confirmPassword ){
-      return ({
-        error: `Password doesn't match`
-      })
-    }
-      else { return password }
-    }
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    matchPassword(e);
-    const {username, password} = e.target
-    setError(null)
-    authApiService.postUser({
-      username: username.value,
-      password: password.value
-    }).then(user => {
-      props.history.push('/login')
-    }).catch(res => {
-      setError(res.error)
-    })
-  }
+    const { username, password, confirmPassword } = e.target;
+    setError(null);
+    if (password === confirmPassword) {
+      authApiService
+        .postUser({
+          username: username.value,
+          password: password.value,
+        })
+        .then((user) => {
+          props.history.push("/login");
+        })
+        .catch((res) => {
+          setError(res.error);
+        });
+    } else {
+      alert("Passwords do not match");
+    }
+  };
 
   return (
     <section className="register">
       <h3>Register</h3>
       <form className="signup-form" onSubmit={handleSubmit}>
-        {error && <p className="error" style={{color: 'red'}}>{error}</p>}
+        {error && (
+          <p className="error" style={{ color: "red" }}>
+            {error}
+          </p>
+        )}
         <div>
           <label htmlFor="username">Group Username</label>
           <input
@@ -50,11 +47,11 @@ function Register(props) {
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input 
-          type="password" 
-          name="password" 
-          id="password"
-          //defaultValue="DemoPassword123!"
+          <input
+            type="password"
+            name="password"
+            id="password"
+            //defaultValue="DemoPassword123!"
           />
         </div>
         <div>
