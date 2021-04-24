@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import authApiService from "../services/auth-api-service";
 import "./Register.css";
 
