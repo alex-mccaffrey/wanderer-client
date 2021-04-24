@@ -9,6 +9,8 @@ const Login = (props) => {
 
   const [error, setError] = useState("")
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { username, password } = e.target;
@@ -28,6 +30,7 @@ const Login = (props) => {
     <section className="login">
       <h3>Login</h3>
       {error && <p className="error" style={{color: 'red'}}>{error}</p>}
+      <p>Demo Account: Username "Demo", Password "DemoPassword123!"</p>
       <form className="login-form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username</label>

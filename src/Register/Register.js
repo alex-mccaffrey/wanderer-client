@@ -5,11 +5,13 @@ import "./Register.css";
 function Register(props) {
   const [error, setError] = useState("");
 
+
+
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(e);
     const { username, password, confirmPassword } = e.target;
     setError(null);
-    if (password === confirmPassword) {
+    if (password.value === confirmPassword.value) {
       authApiService
         .postUser({
           username: username.value,
@@ -21,9 +23,9 @@ function Register(props) {
         .catch((res) => {
           setError(res.error);
         });
-    } else {
-      alert("Passwords do not match");
-    }
+      } else {
+          alert("Passwords do not match");
+        }
   };
 
   return (
@@ -59,7 +61,7 @@ function Register(props) {
           <input
             type="password"
             name="confirmPassword"
-            id="confirm-password"
+            id="confirmPassword"
             //defaultValue="DemoPassword123!"
           />
         </div>
