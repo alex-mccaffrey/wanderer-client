@@ -1,7 +1,6 @@
 import React from 'react'
 import "./Home.css";
-import Map from "../images/map-pins.jpg"
-import MapComponent from '../Maps/MapComponent';
+import FullMap from '../Maps/FullMap';
 //import Context, {Consumer} from "../Context"
 
 
@@ -24,9 +23,8 @@ const user = props.user
           This is where the most recent location pins will be listed, showing
           who it was, where they were, and the time it was logged.
         </p>
-        {/* <img src={Map} alt="map with pins"></img> */}
       </section>
-      <MapComponent/>
+      <FullMap />
     </div>
     
   );

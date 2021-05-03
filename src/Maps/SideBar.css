@@ -1,0 +1,32 @@
+.sidebar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;;
+    height: 400px;
+    width: 150px;
+    background-color: #afbda2
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    border: 2px;
+    border-radius: 10px;
+    border-style: solid;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.sidebar-markers {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}

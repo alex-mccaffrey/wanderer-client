@@ -22,16 +22,16 @@ const NavBar = (props) => {
               </a>
             </section>
             <ul className="navbar-links">
-            <Link className="nav-link" to="/" onClick={logout}>
-              Logout
-            </Link>
-
             <Link className="nav-link" to="/home">
               Home
             </Link>
 
             <Link className="nav-link" to="/add-location">
               Add Location
+            </Link>
+
+            <Link className="nav-link" to="/" onClick={logout}>
+              Logout
             </Link>
             </ul>
           </>
@@ -51,9 +51,9 @@ const NavBar = (props) => {
               Register
             </Link>
 
-            <Link className="nav-link" to="/">
+            {/* <Link className="nav-link" to="/">
               Landing
-            </Link>
+            </Link> */}
             </ul>
           </>
         )}

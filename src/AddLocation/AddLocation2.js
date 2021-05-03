@@ -1,13 +1,7 @@
 import React, { useState }  from "react";
-import { FindUser }  from "../services/FindUser";
-import AddLocationExample from "../images/add-location-example.jpeg"
-//import GetAddress from "../services/GetAddress";
 import "./AddLocation.css";
-import MapComponent from "../Maps/MapComponent";
 
-function AddLocation() {
-
-  const findUser = FindUser;
+function AddLocation2() {
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("")
@@ -18,10 +12,10 @@ function AddLocation() {
     console.log("this is the name:", name)
   }
 
-  const getLocation = () => {
-    setLocation(findUser())
-    console.log("this is the location", location)
-  }
+//   const getLocation = () => {
+//     setLocation(findUser())
+//     console.log("this is the location", location)
+//   }
 
 
   return (
@@ -52,15 +46,6 @@ function AddLocation() {
         </section>
         
         <br/>
-        {/* <MapComponent /> */}
-        <button
-          id="find-me"
-          onClick={() => {
-          getLocation();
-          }}
-        >
-          Show my location
-        </button>
         
         <br />
         <p id="status"></p>
@@ -68,11 +53,41 @@ function AddLocation() {
         <p id="address"></p>
         <a id="map-link" target="_blank"></a>
         <br/>
-        <button type="submit">Submit</button>
         
+        <button type="submit">Submit</button>
+        {/* <Locate /> */}
       </form>
     </div>
   );
 }
 
-export default AddLocation;
+// function Locate({ panTo, setTempMarker }) {
+//     return (
+//       <button
+//         className="locate"
+//         onClick={() => {
+//           navigator.geolocation.getCurrentPosition(
+//             (position) => {
+//               setTempMarker({
+//                 lat: position.coords.latitude,
+//                 lng: position.coords.longitude,
+//                 time: new Date(),
+//               });
+//               panTo({
+//                 lat: position.coords.latitude,
+//                 lng: position.coords.longitude,
+//               });
+//             },
+//             () =>
+//               alert(
+//                 "There was an error getting your location. Please check the location settings in your browser."
+//               )
+//           );
+//         }}
+//       >
+//         Find Me!
+//       </button>
+//     );
+//   }
+
+export default AddLocation2;
