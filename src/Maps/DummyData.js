@@ -22,5 +22,7 @@ export default [
         lat: 39.68373722,
         lng: -105.780186,
         time: 'Wed Apr 28 2021 12:55:27 GMT-0600 (Mountain Daylight Time)',
+        name: "Alex",
+        notes: "this is a note"
     },
 ]

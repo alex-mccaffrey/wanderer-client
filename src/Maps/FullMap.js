@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./FullMap.css";
 import DummyData from "./DummyData";
 import MapStyles from "./mapStyles";
@@ -26,7 +26,7 @@ import {
 import "@reach/combobox/styles.css";
 
 
-export default function FullMap() {
+export default function FullMap({name, notes}) {
   const libraries = ["places"];
   const mapContainerStyle = {
     width: "400px",
@@ -35,25 +35,26 @@ export default function FullMap() {
 
 
 
-  function getCenter(center) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        panTo({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        }); /// this is the successful call
-      },
-      //() => null ///this is the error
-      () => alert("There was an error getting your location")
-    );
-  }
-  const center = getCenter()
+
+//   function getCenter(center) {
+//     navigator.geolocation.getCurrentPosition(
+//       (position) => {
+//         panTo({
+//           lat: position.coords.latitude,
+//           lng: position.coords.longitude,
+//         }); /// this is the successful call
+//       },
+//       //() => null ///this is the error
+//       () => alert("There was an error getting your location")
+//     );
+//   }
+//   const center = getCenter()
 
 
-//   const center = {
-//     lat: 39.7392,
-//     lng: -104.9903,
-//   };
+  const center = {
+    lat: 39.7392,
+    lng: -104.9903,
+  };
 
 
   const options = {
@@ -170,9 +171,9 @@ export default function FullMap() {
                 }}
               >
                 <div>
-                  <h2>I'm here</h2>
-                  {/* <p>I was here at: {formatRelative(selected.time, new Date())}</p> */}
-                  <p>I was here at: {selected.time}</p>
+                  <h2>I'm here {name}</h2>
+                  <p>I was here at: {formatRelative(selected.time, new Date())}</p>
+                  {/* <p>I was here at: {selected.time}</p> */}
                 </div>
               </InfoWindow>
             )
@@ -181,6 +182,33 @@ export default function FullMap() {
     </div>
   );
 }
+
+
+// //////// InfoWindow Form ////////////
+// function InfoWindowForm() {
+
+//     const [name, setName] = useState("");
+//     const [notes, setNotes] = useState("")
+
+//     return (
+//         <form className="infowindow-form">
+//             <input 
+//                 type="text"
+//                 value={name}
+//                 placeholder="Name"
+//                 id="name"
+//                 onChange={(e) => setName(e.target.value)}
+//             />
+//             <input
+//         type="text"
+//         name="notes"
+//         placeholder="Share some details"
+//         value={notes}
+//         onChange={(e) => setNotes(e.target.value)}
+//         />
+//         </form>
+//     )
+// }
 
 
 
