@@ -3,7 +3,7 @@ import { FindUser }  from "../services/FindUser";
 import AddLocationExample from "../images/add-location-example.jpeg"
 //import GetAddress from "../services/GetAddress";
 import "./AddLocation.css";
-import MapComponent from "../Maps/MapComponent";
+
 
 function AddLocation() {
 

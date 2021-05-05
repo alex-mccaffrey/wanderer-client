@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./FullMap.css";
-import DummyData from "./DummyData";
+import DummyData from "../DummyData";
 import MapStyles from "./mapStyles";
-import SideBar from "./SideBar";
-import AddLocation2 from "../AddLocation/AddLocation2"
+import SideBar from "../Sidebar/SideBar";
+import Locate from "../Locate/Locate";
+//import AddLocation2 from "../AddLocation/AddLocation2"
 import {
   GoogleMap,
   useLoadScript,
@@ -12,56 +13,40 @@ import {
 } from "@react-google-maps/api";
 import { formatRelative } from "date-fns";
 
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxOption,
-  ComboboxList,
-  ComboboxPopover,
-} from "@reach/combobox";
-import "@reach/combobox/styles.css";
 
 
-export default function FullMap({name, notes}) {
+
+export default function FullMap({ name, notes }) {
   const libraries = ["places"];
   const mapContainerStyle = {
     width: "400px",
     height: "400px",
   };
 
-
-
-
-//   function getCenter(center) {
-//     navigator.geolocation.getCurrentPosition(
-//       (position) => {
-//         panTo({
-//           lat: position.coords.latitude,
-//           lng: position.coords.longitude,
-//         }); /// this is the successful call
-//       },
-//       //() => null ///this is the error
-//       () => alert("There was an error getting your location")
-//     );
-//   }
-//   const center = getCenter()
-
+  //   function getCenter(center) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         panTo({
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude,
+  //         }); /// this is the successful call
+  //       },
+  //       //() => null ///this is the error
+  //       () => alert("There was an error getting your location")
+  //     );
+  //   }
+  //   const center = getCenter()
 
   const center = {
     lat: 39.7392,
     lng: -104.9903,
   };
 
-
   const options = {
     styles: MapStyles,
     disableDefaultUI: true,
     zoomControl: true,
-    fullscreenControl: true
+    fullscreenControl: true,
   };
 
   const { isLoaded, loadError } = useLoadScript({
@@ -101,8 +86,19 @@ export default function FullMap({name, notes}) {
     mapRef.current.setZoom(13);
   }, []);
 
+//   const sideBarZoom = React.useCallback(({ lat, lng }) => {
+//     mapRef.current.panTo({ lat, lng });
+//     mapRef.current.setZoom(13);
+//   }, []);
+const sideBarZoom = ({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(13);
+  }
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
+
+
 
   /////Here is the temp marker, aka a single marker on each click, not multiple
   const renderTempMarker = () => {
@@ -119,11 +115,13 @@ export default function FullMap({name, notes}) {
     }
   };
 
+
+
   return (
     <div className="Map">
       {/* <Search panTo={panTo} />   took out search bar, if added back in this needs to be uncommented*/}
       <Locate panTo={panTo} setTempMarker={setTempMarker} />
-      <SideBar markers={markers} panTo={panTo} />
+      <SideBar markers={markers} sideBarZoom={sideBarZoom} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
@@ -131,7 +129,6 @@ export default function FullMap({name, notes}) {
         options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
-        
       >
         {/* {markers.map((marker) => (
           <Marker
@@ -161,28 +158,25 @@ export default function FullMap({name, notes}) {
 
         {renderTempMarker()}
 
-        {selected
-          ?
-            (
-              <InfoWindow
-                position={{ lat: selected.lat, lng: selected.lng }}
-                onCloseClick={() => {
-                  setSelected(null);
-                }}
-              >
-                <div>
-                  <h2>I'm here {name}</h2>
-                  <p>I was here at: {formatRelative(selected.time, new Date())}</p>
-                  {/* <p>I was here at: {selected.time}</p> */}
-                </div>
-              </InfoWindow>
-            )
-          : null}
+        {selected ? (
+          <InfoWindow
+            position={{ lat: selected.lat, lng: selected.lng }}
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+            <div>
+              <h2>I'm here {name}</h2>
+              <p>{notes}</p>
+              <p>I was here at: {formatRelative(selected.time, new Date())}</p>
+              {/* <p>I was here at: {selected.time}</p> */}
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
     </div>
   );
 }
-
 
 // //////// InfoWindow Form ////////////
 // function InfoWindowForm() {
@@ -192,7 +186,7 @@ export default function FullMap({name, notes}) {
 
 //     return (
 //         <form className="infowindow-form">
-//             <input 
+//             <input
 //                 type="text"
 //                 value={name}
 //                 placeholder="Name"
@@ -209,39 +203,3 @@ export default function FullMap({name, notes}) {
 //         </form>
 //     )
 // }
-
-
-
-
-///////// Current Location Feature //////////
-
-function Locate({ panTo, setTempMarker }) {
-  return (
-    <button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setTempMarker({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-              time: new Date(),
-            });
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () =>
-            alert(
-              "There was an error getting your location. Please check the location settings in your browser."
-            )
-        );
-      }}
-    >
-      Find Me!
-    </button>
-  );
-}
-
-
