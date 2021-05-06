@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FullMap.css";
 import DummyData from "../DummyData";
 import MapStyles from "./mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
+import Search from "../Search/Search";
+import AddLocation from "../../AddLocation/AddLocation2";
 //import AddLocation2 from "../AddLocation/AddLocation2"
 import {
   GoogleMap,
@@ -13,9 +15,6 @@ import {
 } from "@react-google-maps/api";
 import { formatRelative } from "date-fns";
 
-
-
-
 export default function FullMap({ name, notes }) {
   const libraries = ["places"];
   const mapContainerStyle = {
@@ -23,24 +22,26 @@ export default function FullMap({ name, notes }) {
     height: "400px",
   };
 
-  //   function getCenter(center) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         panTo({
-  //           lat: position.coords.latitude,
-  //           lng: position.coords.longitude,
-  //         }); /// this is the successful call
-  //       },
-  //       //() => null ///this is the error
-  //       () => alert("There was an error getting your location")
-  //     );
-  //   }
-  //   const center = getCenter()
-
-  const center = {
+  const [center, setCenter] = useState({
     lat: 39.7392,
     lng: -104.9903,
+  });
+
+  const getCenter = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const newCenter = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setCenter(newCenter); /// this is the successful call
+      },
+      //() => null ///this is the error
+      () => alert("There was an error getting your location")
+    );
   };
+
+  useEffect(getCenter, []);
 
   const options = {
     styles: MapStyles,
@@ -86,19 +87,17 @@ export default function FullMap({ name, notes }) {
     mapRef.current.setZoom(13);
   }, []);
 
-//   const sideBarZoom = React.useCallback(({ lat, lng }) => {
-//     mapRef.current.panTo({ lat, lng });
-//     mapRef.current.setZoom(13);
-//   }, []);
-const sideBarZoom = ({ lat, lng }) => {
+  //   const sideBarZoom = React.useCallback(({ lat, lng }) => {
+  //     mapRef.current.panTo({ lat, lng });
+  //     mapRef.current.setZoom(13);
+  //   }, []);
+  const sideBarZoom = ({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(13);
-  }
+  };
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
-
-
 
   /////Here is the temp marker, aka a single marker on each click, not multiple
   const renderTempMarker = () => {
@@ -106,6 +105,7 @@ const sideBarZoom = ({ lat, lng }) => {
       return (
         <Marker
           key={tempMarker.time}
+          draggable={true}
           position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
           onClick={() => {
             setSelected(tempMarker);
@@ -115,22 +115,21 @@ const sideBarZoom = ({ lat, lng }) => {
     }
   };
 
-
-
   return (
     <div className="Map">
-      {/* <Search panTo={panTo} />   took out search bar, if added back in this needs to be uncommented*/}
       <Locate panTo={panTo} setTempMarker={setTempMarker} />
-      <SideBar markers={markers} sideBarZoom={sideBarZoom} />
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={10}
-        center={center}
-        options={options}
-        onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        {/* {markers.map((marker) => (
+      {/* <Search panTo={panTo} />  */}
+      <section className="map-and-sidebar">
+        <SideBar markers={markers} sideBarZoom={sideBarZoom} />
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          zoom={10}
+          center={center}
+          options={options}
+          onClick={onMapClick}
+          onLoad={onMapLoad}
+        >
+          {/* {markers.map((marker) => (
           <Marker
             key={marker.time.toISOString()}
             position={{ lat: marker.lat, lng: marker.lng }}
@@ -146,60 +145,39 @@ const sideBarZoom = ({ lat, lng }) => {
           />
         ))} */}
 
-        {DummyData.map((marker) => (
-          <Marker
-            key={marker.time}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            onClick={() => {
-              setSelected(marker);
-            }}
-          />
-        ))}
+          {DummyData.map((marker) => (
+            <Marker
+              key={marker.time}
+              position={{ lat: marker.lat, lng: marker.lng }}
+              onClick={() => {
+                setSelected(marker);
+                setCenter({ lat: marker.lat, lng: marker.lng })
+              }}
+            />
+          ))}
 
-        {renderTempMarker()}
+          {renderTempMarker()}
 
-        {selected ? (
-          <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
-            onCloseClick={() => {
-              setSelected(null);
-            }}
-          >
-            <div>
-              <h2>I'm here {name}</h2>
-              <p>{notes}</p>
-              <p>I was here at: {formatRelative(selected.time, new Date())}</p>
-              {/* <p>I was here at: {selected.time}</p> */}
-            </div>
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
+          {selected ? (
+            <InfoWindow
+              position={{ lat: selected.lat, lng: selected.lng }}
+              options={{
+                pixelOffset: -50,
+              }}
+              onCloseClick={() => {
+                setSelected(null);
+              }}
+            >
+              <div>
+                <h2>I'm here {name}</h2>
+                <p>{notes}</p>
+                {/* <p>I was here at: {formatRelative(selected.time, new Date())}</p> */}
+                {/* <p>I was here at: {selected.time}</p> */}
+              </div>
+            </InfoWindow>
+          ) : null}
+        </GoogleMap>
+      </section>
     </div>
   );
 }
-
-// //////// InfoWindow Form ////////////
-// function InfoWindowForm() {
-
-//     const [name, setName] = useState("");
-//     const [notes, setNotes] = useState("")
-
-//     return (
-//         <form className="infowindow-form">
-//             <input
-//                 type="text"
-//                 value={name}
-//                 placeholder="Name"
-//                 id="name"
-//                 onChange={(e) => setName(e.target.value)}
-//             />
-//             <input
-//         type="text"
-//         name="notes"
-//         placeholder="Share some details"
-//         value={notes}
-//         onChange={(e) => setNotes(e.target.value)}
-//         />
-//         </form>
-//     )
-// }

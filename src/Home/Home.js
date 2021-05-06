@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Home.css";
-//import FullMap from "../Map/FullMap/FullMap";
-import InfoWindowForm from "../AddLocation/AddLocation2"
+import FullMap from "../Map/FullMap/FullMap";
+
+import AddLocation from "../AddLocation/AddLocation2"
 //import Context, {Consumer} from "../Context"
 
 const Home = () => {
@@ -21,8 +22,11 @@ const Home = () => {
           who it was, where they were, and the time it was logged.
         </p>
       </section>
-      <InfoWindowForm />
+      <section className="map-and-add">
+        
+      <AddLocation />
       {/* <FullMap/> */}
+      </section>
     </div>
   );
 };
