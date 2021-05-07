@@ -25,15 +25,15 @@ export default [
     },
     {
         id: 4, 
-        lat: 39.68373822,
-        lng: -105.780186,
+        lat: 39.78373822,
+        lng: -105.080186,
         time: 'Wed Apr 28 2021 12:55:27 GMT-0600 (Mountain Daylight Time)',
         name: "Tori",
         notes: "this is not a note"
     },
     {
         id: 5, 
-        lat: 39.781099,
+        lat: 39.781999,
         lng: -105.0273788,
         time: 'Wed May 5 2021 08:55:27 GMT-0600 (Mountain Daylight Time)',
         name: "Leo",
@@ -41,7 +41,7 @@ export default [
     },
     {
         id: 6, 
-        lat: 39.738788,
+        lat: 39.728778,
         lng: -104.8721969,
         time: 'Tues May 4 2021 08:00:27 GMT-0600 (Mountain Daylight Time)',
         name: "Allison",
@@ -49,7 +49,7 @@ export default [
     },
     {
         id: 7, 
-        lat: 39.773382,
+        lat: 39.775381,
         lng: -104.949101259,
         time: 'Tues May 4 2021 16:55:27 GMT-0600 (Mountain Daylight Time)',
         name: "Jack",
@@ -57,8 +57,8 @@ export default [
     },
     {
         id: 8, 
-        lat: 39.64373722,
-        lng: -105.780186,
+        lat: 39.78373822,
+        lng: -105.080186,
         time: 'Wed May 5 2021 12:55:27 GMT-0600 (Mountain Daylight Time)',
         name: "Piper",
         notes: "I'm a dog"

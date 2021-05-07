@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../FullMap/FullMap.css";
 import MapStyles from "../FullMap/mapStyles";
-import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
-import SubmitNewLocation from "./SubmitNewLocation"
 import {
   GoogleMap,
   useLoadScript,
@@ -12,7 +10,7 @@ import {
 } from "@react-google-maps/api";
 import { formatRelative } from "date-fns";
 
-export default function AddLocationMap({ name, notes }) {
+export default function AddLocationMap({ name, notes, setNewMarker }) {
   const libraries = ["places"];
   const mapContainerStyle = {
     width: "400px",
@@ -34,14 +32,17 @@ export default function AddLocationMap({ name, notes }) {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        setCenter(newCenter); /// this is the successful call
+        setCenter(newCenter);
       },
-      //() => null ///this is the error
       () => alert("There was an error getting your location")
     );
   };
 
   useEffect(getCenter, []);
+
+  useEffect(() => {
+    setNewMarker(tempMarker)
+  }, [tempMarker])
 
   const options = {
     styles: MapStyles,
@@ -101,9 +102,12 @@ export default function AddLocationMap({ name, notes }) {
     }
   };
 
+  
+
   return (
     <div className="Map">
-      <Locate panTo={panTo} setTempMarker={setTempMarker} />
+      {/* <Locate panTo={panTo} setTempMarker={setTempMarker} setNewMarker={setNewMarker}/> */}
+      <Locate panTo={panTo} setTempMarker={setTempMarker}/>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={9}
@@ -131,7 +135,7 @@ export default function AddLocationMap({ name, notes }) {
             </InfoWindow>
           ) : null}
         </GoogleMap>
-        <SubmitNewLocation tempMarker={tempMarker}/>
+        {/* <SubmitNewLocation tempMarker={tempMarker}/> */}
     </div>
   );
 }

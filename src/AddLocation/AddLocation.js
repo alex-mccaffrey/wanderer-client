@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FindUser } from "../services/FindUser";
 import AddLocationExample from "../images/add-location-example.jpeg";
 //import GetAddress from "../services/GetAddress";
@@ -6,21 +6,16 @@ import "./AddLocation.css";
 import AddLocationMap from "../Map/AddLocationMap/AddLocationMap";
 
 function AddLocation() {
-  const findUser = FindUser;
 
   const [name, setName] = useState("");
-  const [addMarker, setAddMarker] = useState("");
   const [notes, setNotes] = useState("");
+  const [newMarker, setNewMarker] = useState(null)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this is the name:", name);
+    console.log("this is the the newMarker:", newMarker, name, notes);
   };
 
-  // const getLocation = () => {
-  //   setAddMarker(findUser());
-  //   console.log("this is the location", addMarker);
-  // };
 
   return (
     <div className="AddLocation">
@@ -50,7 +45,12 @@ function AddLocation() {
         </section>
 
         <br />
-        <AddLocationMap name={name} notes={notes} />
+        <AddLocationMap 
+        name={name} 
+        notes={notes} 
+        newMarker={newMarker}
+        setNewMarker={setNewMarker} 
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
