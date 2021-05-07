@@ -5,16 +5,23 @@
     justify-content: space-around;;
     height: 400px;
     width: 150px;
-    background-color: #afbda2
+    background-color: #afbda2;
+    overflow: scroll;
 }
 
-ul {
+.sidebar-ul {
     display: flex;
-    justify-content: center;
+    justify-content:start;
     align-items: center;
     flex-direction: column;
     list-style: none;
+    height: 400px;
     padding: 0;
+    margin:0;
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    overflow: scroll;
 }
 
 li {

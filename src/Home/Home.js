@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Home.css";
 import FullMap from "../Map/FullMap/FullMap";
-
 import AddLocation from "../AddLocation/AddLocation2"
 //import Context, {Consumer} from "../Context"
 

@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import "./AddLocation.css";
 import Locate from "../Map/Locate/Locate";
 import FullMap from "../Map/FullMap/FullMap";
+import DummyData from "../Map/DummyData"
 
 //////// InfoWindow Form ////////////
-export default function InfoWindowForm() {
+export default function AddLocation2() {
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
   const [currentLocationMarker, setCurrentLocationMarker] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this is e target name in submit", e.target.name.value);
-    console.log("this is e target notes in submit", e.target.notes.value);
-    console.log("submitted");
+    setCurrentLocationMarker(e.target)
+    // DummyData.push(currentLocationMarker)  /
   };
 
   return (

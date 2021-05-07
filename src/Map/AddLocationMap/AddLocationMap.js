@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./FullMap.css";
-import DummyData from "../DummyData";
-import MapStyles from "./mapStyles";
+import "../FullMap/FullMap.css";
+import MapStyles from "../FullMap/mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
-
-import Search from "../Search/Search";
-import AddLocation from "../../AddLocation/AddLocation2";
-//import AddLocation2 from "../AddLocation/AddLocation2"
+import SubmitNewLocation from "./SubmitNewLocation"
 import {
   GoogleMap,
   useLoadScript,
@@ -16,17 +12,15 @@ import {
 } from "@react-google-maps/api";
 import { formatRelative } from "date-fns";
 
-export default function FullMap({ name, notes }) {
+export default function AddLocationMap({ name, notes }) {
   const libraries = ["places"];
   const mapContainerStyle = {
     width: "400px",
     height: "400px",
   };
 
-    // const [markers, setMarkers] = React.useState([]);
-    const [markers, setMarkers] = React.useState(DummyData);
-    const [selected, setSelected] = React.useState(null);
-    const [tempMarker, setTempMarker] = React.useState({});
+  const [selected, setSelected] = React.useState(null);
+  const [tempMarker, setTempMarker] = React.useState({});
 
   const [center, setCenter] = useState({
     lat: 39.7392,
@@ -61,7 +55,6 @@ export default function FullMap({ name, notes }) {
     libraries,
   });
 
-
   const onMapClick = React.useCallback((e) => {
     setTempMarker({
       lat: e.latLng.lat(),
@@ -80,14 +73,6 @@ export default function FullMap({ name, notes }) {
     mapRef.current.setZoom(13);
   }, []);
 
-  //   const sideBarZoom = React.useCallback(({ lat, lng }) => {
-  //     mapRef.current.panTo({ lat, lng });
-  //     mapRef.current.setZoom(13);
-  //   }, []);
-  const sideBarZoom = ({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(13);
-  };
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -97,20 +82,20 @@ export default function FullMap({ name, notes }) {
     if (Object.keys(tempMarker).length > 0) {
       return (
         <div className="tempMarker">
-        <Marker
-          key={tempMarker.time}
-          draggable={true}
-          position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
-          icon={{
-            url: "/walker.svg",
-            scaledSize: new window.google.maps.Size(40, 40),
-            origin: new window.google.maps.Point(0, 0),
-            anchor: new window.google.maps.Point(22, 22)
-          }}
-          onClick={() => {
-            setSelected(tempMarker);
-          }}
-        />
+          <Marker
+            key={tempMarker.time}
+            draggable={true}
+            position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
+            icon={{
+              url: "/walker.svg",
+              scaledSize: new window.google.maps.Size(40, 40),
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(22, 22),
+            }}
+            onClick={() => {
+              setSelected(tempMarker);
+            }}
+          />
         </div>
       );
     }
@@ -119,10 +104,6 @@ export default function FullMap({ name, notes }) {
   return (
     <div className="Map">
       <Locate panTo={panTo} setTempMarker={setTempMarker} />
-      {/* <Search panTo={panTo} />  */}
-      <section className="map-and-sidebar">
-        <SideBar markers={markers} sideBarZoom={sideBarZoom} />
-        {console.log("map is reloading")}
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={9}
@@ -131,34 +112,6 @@ export default function FullMap({ name, notes }) {
           onClick={onMapClick}
           onLoad={onMapLoad}
         >
-          {/* {markers.map((marker) => (
-          <Marker
-            key={marker.time.toISOString()}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            // icon={{
-            //   url: '/logo.png',
-            //   scaledSize: new window.google.maps.Size(30, 30),
-            //   origin: new window.google.maps.Point(0,0),
-            //   anchor: new window.google.maps.Point(15, 15),
-            // }}
-            onClick={() => {
-              setSelected(marker);
-            }}
-          />
-        ))} */}
-
-          {DummyData.map((marker) => (
-            <Marker
-              key={marker.time}
-              position={{ lat: marker.lat, lng: marker.lng }}
-              anchor={new window.google.maps.Point(15, 15)}
-              onClick={() => {
-                setSelected(marker);
-                setCenter({ lat: marker.lat, lng: marker.lng })
-              }}
-            />
-          ))}
-
           {renderTempMarker()}
 
           {selected ? (
@@ -169,15 +122,16 @@ export default function FullMap({ name, notes }) {
               }}
             >
               <div>
-                <h2>{name} was here.</h2>
+                <h2>{name} is here</h2>
                 <p>{notes}</p>
-                {/* <p>I was here at: {formatRelative(selected.time, new Date())}</p> */}
-                <p>{name} was here at: {selected.time}</p>
+                <p>
+                  I am here now: {formatRelative(selected.time, new Date())}
+                </p>
               </div>
             </InfoWindow>
           ) : null}
         </GoogleMap>
-      </section>
+        <SubmitNewLocation tempMarker={tempMarker}/>
     </div>
   );
 }

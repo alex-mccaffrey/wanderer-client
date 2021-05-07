@@ -1,28 +1,26 @@
-import React, { useState }  from "react";
-import { FindUser }  from "../services/FindUser";
-import AddLocationExample from "../images/add-location-example.jpeg"
+import React, { useState } from "react";
+import { FindUser } from "../services/FindUser";
+import AddLocationExample from "../images/add-location-example.jpeg";
 //import GetAddress from "../services/GetAddress";
 import "./AddLocation.css";
-
+import AddLocationMap from "../Map/AddLocationMap/AddLocationMap";
 
 function AddLocation() {
-
   const findUser = FindUser;
 
   const [name, setName] = useState("");
-  const [location, setLocation] = useState("")
-  const [notes, setNotes] = useState("")
+  const [addMarker, setAddMarker] = useState("");
+  const [notes, setNotes] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this is the name:", name)
-  }
+    console.log("this is the name:", name);
+  };
 
-  const getLocation = () => {
-    setLocation(findUser())
-    console.log("this is the location", location)
-  }
-
+  // const getLocation = () => {
+  //   setAddMarker(findUser());
+  //   console.log("this is the location", addMarker);
+  // };
 
   return (
     <div className="AddLocation">
@@ -41,35 +39,19 @@ function AddLocation() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <br/>
+          <br />
           <input
-        type="text"
-        name="notes"
-        placeholder="Share some details"
-        value={notes}
-        onChange={(e) => setNotes(e.target.value)}
-        />
+            type="text"
+            name="notes"
+            placeholder="Share some details"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
         </section>
-        
-        <br/>
-        {/* <MapComponent /> */}
-        <button
-          id="find-me"
-          onClick={() => {
-          getLocation();
-          }}
-        >
-          Show my location
-        </button>
-        
+
         <br />
-        <p id="status"></p>
-        <p id="latlong"></p>
-        <p id="address"></p>
-        <a id="map-link" target="_blank"></a>
-        <br/>
+        <AddLocationMap name={name} notes={notes} />
         <button type="submit">Submit</button>
-        
       </form>
     </div>
   );

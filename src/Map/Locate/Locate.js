@@ -1,4 +1,3 @@
-
 import React from "react"
 
 ///////// Current Location Feature //////////
@@ -7,7 +6,8 @@ export default function Locate({ panTo, setTempMarker }) {
     return (
       <button
         className="locate"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault()
           navigator.geolocation.getCurrentPosition(
             (position) => {
               setTempMarker({

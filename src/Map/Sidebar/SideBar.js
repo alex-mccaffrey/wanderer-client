@@ -36,7 +36,7 @@ function SideBar(props) {
   const loadSideMarkers = (markers, onClickZoom) => {
     console.log("loadSideMakers is running");
     return (
-      <ul>
+      <ul className="sidebar-ul">
         {markers.map((marker) => (
           <li
             key={marker.id}
