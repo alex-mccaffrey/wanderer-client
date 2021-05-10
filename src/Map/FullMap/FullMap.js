@@ -95,14 +95,10 @@ export default function FullMap({ name, notes }) {
     mapRef.current.setZoom(13);
   }, []);
 
-  //   const sideBarZoom = React.useCallback(({ lat, lng }) => {
-  //     mapRef.current.panTo({ lat, lng });
-  //     mapRef.current.setZoom(13);
-  //   }, []);
-  const sideBarZoom = ({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(13);
-  };
+    const sideBarZoom = React.useCallback(({ lat, lng }) => {
+      mapRef.current.panTo({ lat: parseFloat(lat), lng: parseFloat(lng) });
+      mapRef.current.setZoom(13);
+    }, []);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -146,12 +142,12 @@ export default function FullMap({ name, notes }) {
           onClick={onMapClick}
           onLoad={onMapLoad}
         >
-          {markers.map((marker) => (
+          {/* {markers.map((marker) => (
+            console.log("marker maker running", marker),
             <Marker
               // key={marker.time.toISOString()}
               key={marker.lat}
               position={{ lat: parseInt(marker.latitude), lng: parseInt(marker.longitude) }}
-              anchor={new window.google.maps.Point(15, 15)}
               // icon={{
               //   url: '/logo.png',
               //   scaledSize: new window.google.maps.Size(30, 30),
@@ -163,16 +159,26 @@ export default function FullMap({ name, notes }) {
                 setCenter({ lat: parseInt(marker.latitude), lng: parseInt(marker.longitude) })
               }}
             />
+          ))} */}
+
+             {markers.map((marker) => (
+            <Marker
+              key={marker.time}
+              position={{ lat: parseFloat(marker.latitude), lng: parseFloat(marker.longitude) }}
+              onClick={() => {
+                setSelected(marker);
+                setCenter({ lat: parseFloat(marker.latitude), lng: parseFloat(marker.longitude) })
+              }}
+            />
           ))}
 
           {/* {DummyData.map((marker) => (
             <Marker
               key={marker.time}
-              position={{ lat: marker.lat, lng: marker.lng }}
-              anchor={new window.google.maps.Point(15, 15)}
+              position={{ lat: marker.latitude, lng: marker.longitude }}
               onClick={() => {
                 setSelected(marker);
-                setCenter({ lat: marker.lat, lng: marker.lng })
+                setCenter({ lat: marker.latitude, lng: marker.longitude })
               }}
             />
           ))} */}
@@ -181,7 +187,7 @@ export default function FullMap({ name, notes }) {
 
           {selected ? (
             <InfoWindow
-              position={{ lat: parseInt(selected.lat), lng: parseInt(selected.lng) }}
+              position={{ lat: selected.lat, lng: selected.lng }}
               onCloseClick={() => {
                 setSelected(null);
               }}
@@ -191,7 +197,7 @@ export default function FullMap({ name, notes }) {
                 <p>{selected.notes}</p>
                 {/* <p>I was here at: {formatRelative(selected.time, new Date())}</p> */}
                 <p>
-                  {selected.name} was here at:
+                  {selected.name} was here at: {selected.time}
                 </p>
               </div>
             </InfoWindow>

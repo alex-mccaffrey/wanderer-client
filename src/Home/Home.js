@@ -21,8 +21,8 @@ const Home = () => {
         </p>
       </section>
       <section className="map-and-add">
-      <AddLocation />
-      {/* <FullMap/> */}
+      {/* <AddLocation /> */}
+      <FullMap/>
       </section>
     </div>
   );

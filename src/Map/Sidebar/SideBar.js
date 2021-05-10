@@ -5,13 +5,12 @@ function SideBar(props) {
   const markers = props.markers;
   const sideBarZoom = props.sideBarZoom;
 
-  console.log("markers in sidebar", markers)
 
   const onClickZoom = (marker) => {
     console.log("marker in onCLickZoom", marker)
     return sideBarZoom({
-      lat: parseInt(marker.latitude),
-      lng: parseInt(marker.longitude),
+      lat: parseFloat(marker.latitude),
+      lng: parseFloat(marker.longitude),
     });
   };
 
@@ -34,7 +33,6 @@ function SideBar(props) {
   //   );
   // }, []);
 
-
   const loadSideMarkers = (markers, onClickZoom) => {
     console.log("loadSideMakers is running");
     return (
@@ -47,15 +45,12 @@ function SideBar(props) {
               onClickZoom(marker);
             }}
           >
-            {marker.name} was here at: this time
+            {marker.name} was here at: {marker.time}
           </li>
         ))}
       </ul>
     );
-  }
-
-
- 
+  };
 
   return (
     <div className="sidebar">
