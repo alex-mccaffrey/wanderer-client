@@ -4,7 +4,7 @@ import DummyData from "../DummyData";
 import MapStyles from "./mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
-
+import AuthApiService from "../../services/auth-api-service";
 import Search from "../Search/Search";
 import AddLocation from "../../AddLocation/AddLocation2";
 //import AddLocation2 from "../AddLocation/AddLocation2"
@@ -23,10 +23,21 @@ export default function FullMap({ name, notes }) {
     height: "400px",
   };
 
-    // const [markers, setMarkers] = React.useState([]);
-    const [markers, setMarkers] = React.useState(DummyData);
-    const [selected, setSelected] = React.useState(null);
-    const [tempMarker, setTempMarker] = React.useState({});
+  const getAllMarkers = () => {
+    AuthApiService.getMarkers().then((markers) => {
+      console.log("markers in getAllMarkers", markers)
+      setMarkers(markers);
+    });
+  };
+
+  useEffect(() => {
+    setMarkers(getAllMarkers())
+  }, []);
+
+  const [markers, setMarkers] = React.useState([]);
+  //const [markers, setMarkers] = React.useState(DummyData);
+  const [selected, setSelected] = React.useState(null);
+  const [tempMarker, setTempMarker] = React.useState({});
 
   const [center, setCenter] = useState({
     lat: 39.7392,
@@ -61,14 +72,18 @@ export default function FullMap({ name, notes }) {
     libraries,
   });
 
+  // const onMapClick = React.useCallback((e) => {
+  //   console.log("setting temp marker on click")
+  //   setTempMarker({
+  //     lat: e.latLng.lat(),
+  //     lng: e.latLng.lng(),
+  //     timeAdded: new Date(),
+  //   });
+  // }, []);
 
   const onMapClick = React.useCallback((e) => {
-    setTempMarker({
-      lat: e.latLng.lat(),
-      lng: e.latLng.lng(),
-      time: new Date(),
-    });
-  }, []);
+    console.log(e.latLng.lat(), e.latLng.lng())
+  })
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -97,20 +112,20 @@ export default function FullMap({ name, notes }) {
     if (Object.keys(tempMarker).length > 0) {
       return (
         <div className="tempMarker">
-        <Marker
-          key={tempMarker.time}
-          draggable={true}
-          position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
-          icon={{
-            url: "/walker.svg",
-            scaledSize: new window.google.maps.Size(40, 40),
-            origin: new window.google.maps.Point(0, 0),
-            anchor: new window.google.maps.Point(22, 22)
-          }}
-          onClick={() => {
-            setSelected(tempMarker);
-          }}
-        />
+          <Marker
+            key={tempMarker.time}
+            draggable={true}
+            position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
+            icon={{
+              url: "/walker.svg",
+              scaledSize: new window.google.maps.Size(40, 40),
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(22, 22),
+            }}
+            onClick={() => {
+              setSelected(tempMarker);
+            }}
+          />
         </div>
       );
     }
@@ -122,7 +137,7 @@ export default function FullMap({ name, notes }) {
       {/* <Search panTo={panTo} />  */}
       <section className="map-and-sidebar">
         <SideBar markers={markers} sideBarZoom={sideBarZoom} />
-        {console.log("map is reloading")}
+        {console.log("map is reloading", markers)}
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={9}
@@ -131,23 +146,26 @@ export default function FullMap({ name, notes }) {
           onClick={onMapClick}
           onLoad={onMapLoad}
         >
-          {/* {markers.map((marker) => (
-          <Marker
-            key={marker.time.toISOString()}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            // icon={{
-            //   url: '/logo.png',
-            //   scaledSize: new window.google.maps.Size(30, 30),
-            //   origin: new window.google.maps.Point(0,0),
-            //   anchor: new window.google.maps.Point(15, 15),
-            // }}
-            onClick={() => {
-              setSelected(marker);
-            }}
-          />
-        ))} */}
+          {markers.map((marker) => (
+            <Marker
+              // key={marker.time.toISOString()}
+              key={marker.lat}
+              position={{ lat: parseInt(marker.latitude), lng: parseInt(marker.longitude) }}
+              anchor={new window.google.maps.Point(15, 15)}
+              // icon={{
+              //   url: '/logo.png',
+              //   scaledSize: new window.google.maps.Size(30, 30),
+              //   origin: new window.google.maps.Point(0,0),
+              //   anchor: new window.google.maps.Point(15, 15),
+              // }}
+              onClick={() => {
+                setSelected(marker);
+                setCenter({ lat: parseInt(marker.latitude), lng: parseInt(marker.longitude) })
+              }}
+            />
+          ))}
 
-          {DummyData.map((marker) => (
+          {/* {DummyData.map((marker) => (
             <Marker
               key={marker.time}
               position={{ lat: marker.lat, lng: marker.lng }}
@@ -157,22 +175,24 @@ export default function FullMap({ name, notes }) {
                 setCenter({ lat: marker.lat, lng: marker.lng })
               }}
             />
-          ))}
+          ))} */}
 
           {renderTempMarker()}
 
           {selected ? (
             <InfoWindow
-              position={{ lat: selected.lat, lng: selected.lng }}
+              position={{ lat: parseInt(selected.lat), lng: parseInt(selected.lng) }}
               onCloseClick={() => {
                 setSelected(null);
               }}
             >
               <div>
-                <h2>{name} was here.</h2>
-                <p>{notes}</p>
+                <h2>{selected.name} was here.</h2>
+                <p>{selected.notes}</p>
                 {/* <p>I was here at: {formatRelative(selected.time, new Date())}</p> */}
-                <p>{name} was here at: {selected.time}</p>
+                <p>
+                  {selected.name} was here at:
+                </p>
               </div>
             </InfoWindow>
           ) : null}

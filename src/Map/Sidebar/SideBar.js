@@ -5,11 +5,13 @@ function SideBar(props) {
   const markers = props.markers;
   const sideBarZoom = props.sideBarZoom;
 
+  console.log("markers in sidebar", markers)
 
   const onClickZoom = (marker) => {
+    console.log("marker in onCLickZoom", marker)
     return sideBarZoom({
-      lat: marker.lat,
-      lng: marker.lng,
+      lat: parseInt(marker.latitude),
+      lng: parseInt(marker.longitude),
     });
   };
 
@@ -45,7 +47,7 @@ function SideBar(props) {
               onClickZoom(marker);
             }}
           >
-            This is the marker id; {marker.id}
+            {marker.name} was here at: this time
           </li>
         ))}
       </ul>

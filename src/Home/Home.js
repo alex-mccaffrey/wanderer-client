@@ -6,7 +6,6 @@ import AddLocation from "../AddLocation/AddLocation2"
 
 const Home = () => {
 
-
   return (
     <div className="Home">
       <h1>Hello</h1>
@@ -22,7 +21,6 @@ const Home = () => {
         </p>
       </section>
       <section className="map-and-add">
-        
       <AddLocation />
       {/* <FullMap/> */}
       </section>
