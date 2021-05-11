@@ -151,7 +151,6 @@ export default function FullMap({ name, notes, newMarkerProp }) {
       {/* <Search panTo={panTo} />  */}
       <section className="map-and-sidebar">
         <SideBar markers={markers} sideBarZoom={sideBarZoom} />
-        {console.log("map is reloading", markers)}
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={9}
@@ -161,27 +160,6 @@ export default function FullMap({ name, notes, newMarkerProp }) {
           onLoad={onMapLoad}
         >
           {markerMap()}
-          {/* {markers.map(
-            (marker) => (
-              console.log("this is a marker in the marker creation", marker),
-              (
-                <Marker
-                  key={marker.id}
-                  position={{
-                    lat: parseFloat(marker.latitude),
-                    lng: parseFloat(marker.longitude),
-                  }}
-                  onClick={() => {
-                    setSelected(marker);
-                    setCenter({
-                      lat: parseFloat(marker.latitude),
-                      lng: parseFloat(marker.longitude),
-                    });
-                  }}
-                />
-              )
-            )
-          )} */}
 
           {/* {DummyData.map((marker) => (
             <Marker
@@ -209,10 +187,9 @@ export default function FullMap({ name, notes, newMarkerProp }) {
               <div>
                 <h2>{selected.name} was here.</h2>
                 <p>{selected.notes}</p>
-                {/* <p>I was here at: {formatRelative(selected.timeAdded, new Date())}</p> */}
                 <p>
-                  {selected.name} was here at: {moment(selected.timeAdded).format('MMMM Do YYYY, h:mm:ss a')}
-                  
+                  {selected.name} was here at:{" "}
+                  {moment(selected.timeAdded).format("MMMM Do YYYY, h:mm:ss a")}
                 </p>
               </div>
             </InfoWindow>

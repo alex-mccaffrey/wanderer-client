@@ -27,7 +27,7 @@ function SideBar(props) {
               onClickZoom(marker);
             }}
           >
-            {marker.name} was here {moment(marker.timeAdded).startOf('hour').fromNow()}
+            {marker.name} was here {moment(marker.timeAdded).format('MMMM Do YYYY, h:mm:ss a')}
           </li>
         ))}
       </ul>
