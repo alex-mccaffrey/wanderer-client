@@ -30,7 +30,7 @@ export default {
 
   // used to add new location marker
   postMarker(marker) {
-    const token = "bearer" + TokenService.hasAuthToken();
+    const token = "bearer " + TokenService.hasAuthToken();
     return fetch(`${config.API_ENDPOINT}/api/markers`, {
       method: "POST",
       headers: {
@@ -39,13 +39,12 @@ export default {
       },
       body: JSON.stringify(marker),
     }).then((res) =>
-      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json
     );
   },
 
   // used to get locations markers for user
   getMarkers() {
-    console.log("this is inside getMarker service")
     const token = "bearer " + TokenService.hasAuthToken();
     return fetch(`${config.API_ENDPOINT}/api/markers`, {
       method: "GET",

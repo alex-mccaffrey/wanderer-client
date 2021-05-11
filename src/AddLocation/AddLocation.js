@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { FindUser } from "../services/FindUser";
 import AddLocationExample from "../images/add-location-example.jpeg";
+import AuthApiService from "../services/auth-api-service";
 //import GetAddress from "../services/GetAddress";
 import "./AddLocation.css";
 import AddLocationMap from "../Map/AddLocationMap/AddLocationMap";
 
-function AddLocation() {
-
+function AddLocation(props) {
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
-  const [newMarker, setNewMarker] = useState(null)
+  const [newMarker, setNewMarker] = useState(null);
+
+  const disableSubmit = () => {
+    if (newMarker) {
+      const hasLatLng = newMarker.lat && newMarker.lng;
+      return !hasLatLng;
+    } else return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this is the the newMarker:", newMarker, name, notes);
+    const addedMarker = {
+      name,
+      notes,
+      latitude: newMarker.lat,
+      longitude: newMarker.lng,
+      timeAdded: new Date(),
+    };
+    AuthApiService.postMarker(addedMarker).then((marker) => {
+      props.history.push({
+        pathname: "/home",
+      });
+    });
   };
-
 
   return (
     <div className="AddLocation">
@@ -45,13 +62,15 @@ function AddLocation() {
         </section>
 
         <br />
-        <AddLocationMap 
-        name={name} 
-        notes={notes} 
-        newMarker={newMarker}
-        setNewMarker={setNewMarker} 
+        <AddLocationMap
+          name={name}
+          notes={notes}
+          newMarker={newMarker}
+          setNewMarker={setNewMarker}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={disableSubmit()}>
+          Submit
+        </button>
       </form>
     </div>
   );

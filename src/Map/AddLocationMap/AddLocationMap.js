@@ -126,7 +126,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
               }}
             >
               <div>
-                <h2>{name} is here</h2>
+                <h2>{name} was here</h2>
                 <p>{notes}</p>
                 <p>
                   I am here now: {formatRelative(selected.time, new Date())}

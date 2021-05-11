@@ -5,9 +5,6 @@ import MapStyles from "./mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
 import AuthApiService from "../../services/auth-api-service";
-import Search from "../Search/Search";
-import AddLocation from "../../AddLocation/AddLocation2";
-//import AddLocation2 from "../AddLocation/AddLocation2"
 import {
   GoogleMap,
   useLoadScript,
@@ -15,8 +12,9 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { formatRelative } from "date-fns";
+import moment from "moment";
 
-export default function FullMap({ name, notes }) {
+export default function FullMap({ name, notes, newMarkerProp }) {
   const libraries = ["places"];
   const mapContainerStyle = {
     width: "400px",
@@ -24,14 +22,13 @@ export default function FullMap({ name, notes }) {
   };
 
   const getAllMarkers = () => {
-    AuthApiService.getMarkers().then((markers) => {
-      console.log("markers in getAllMarkers", markers)
+    return AuthApiService.getMarkers().then((markers) => {
       setMarkers(markers);
     });
   };
 
   useEffect(() => {
-    setMarkers(getAllMarkers())
+    setMarkers(getAllMarkers());
   }, []);
 
   const [markers, setMarkers] = React.useState([]);
@@ -72,6 +69,27 @@ export default function FullMap({ name, notes }) {
     libraries,
   });
 
+  const markerMap = () => {
+    if (markers.length > 0) {
+      return markers.map((marker) => (
+        <Marker
+          key={marker.id}
+          position={{
+            lat: parseFloat(marker.latitude),
+            lng: parseFloat(marker.longitude),
+          }}
+          onClick={() => {
+            setSelected(marker);
+            setCenter({
+              lat: parseFloat(marker.latitude),
+              lng: parseFloat(marker.longitude),
+            });
+          }}
+        />
+      ));
+    }
+  };
+
   // const onMapClick = React.useCallback((e) => {
   //   console.log("setting temp marker on click")
   //   setTempMarker({
@@ -82,8 +100,8 @@ export default function FullMap({ name, notes }) {
   // }, []);
 
   const onMapClick = React.useCallback((e) => {
-    console.log(e.latLng.lat(), e.latLng.lng())
-  })
+    console.log(e.latLng.lat(), e.latLng.lng());
+  });
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -95,10 +113,10 @@ export default function FullMap({ name, notes }) {
     mapRef.current.setZoom(13);
   }, []);
 
-    const sideBarZoom = React.useCallback(({ lat, lng }) => {
-      mapRef.current.panTo({ lat: parseFloat(lat), lng: parseFloat(lng) });
-      mapRef.current.setZoom(13);
-    }, []);
+  const sideBarZoom = React.useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat: parseFloat(lat), lng: parseFloat(lng) });
+    mapRef.current.setZoom(13);
+  }, []);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -142,35 +160,28 @@ export default function FullMap({ name, notes }) {
           onClick={onMapClick}
           onLoad={onMapLoad}
         >
-          {/* {markers.map((marker) => (
-            console.log("marker maker running", marker),
-            <Marker
-              // key={marker.time.toISOString()}
-              key={marker.lat}
-              position={{ lat: parseInt(marker.latitude), lng: parseInt(marker.longitude) }}
-              // icon={{
-              //   url: '/logo.png',
-              //   scaledSize: new window.google.maps.Size(30, 30),
-              //   origin: new window.google.maps.Point(0,0),
-              //   anchor: new window.google.maps.Point(15, 15),
-              // }}
-              onClick={() => {
-                setSelected(marker);
-                setCenter({ lat: parseInt(marker.latitude), lng: parseInt(marker.longitude) })
-              }}
-            />
-          ))} */}
-
-             {markers.map((marker) => (
-            <Marker
-              key={marker.time}
-              position={{ lat: parseFloat(marker.latitude), lng: parseFloat(marker.longitude) }}
-              onClick={() => {
-                setSelected(marker);
-                setCenter({ lat: parseFloat(marker.latitude), lng: parseFloat(marker.longitude) })
-              }}
-            />
-          ))}
+          {markerMap()}
+          {/* {markers.map(
+            (marker) => (
+              console.log("this is a marker in the marker creation", marker),
+              (
+                <Marker
+                  key={marker.id}
+                  position={{
+                    lat: parseFloat(marker.latitude),
+                    lng: parseFloat(marker.longitude),
+                  }}
+                  onClick={() => {
+                    setSelected(marker);
+                    setCenter({
+                      lat: parseFloat(marker.latitude),
+                      lng: parseFloat(marker.longitude),
+                    });
+                  }}
+                />
+              )
+            )
+          )} */}
 
           {/* {DummyData.map((marker) => (
             <Marker
@@ -187,7 +198,10 @@ export default function FullMap({ name, notes }) {
 
           {selected ? (
             <InfoWindow
-              position={{ lat: selected.lat, lng: selected.lng }}
+              position={{
+                lat: parseFloat(selected.lat),
+                lng: parseFloat(selected.lng),
+              }}
               onCloseClick={() => {
                 setSelected(null);
               }}
@@ -195,9 +209,10 @@ export default function FullMap({ name, notes }) {
               <div>
                 <h2>{selected.name} was here.</h2>
                 <p>{selected.notes}</p>
-                {/* <p>I was here at: {formatRelative(selected.time, new Date())}</p> */}
+                {/* <p>I was here at: {formatRelative(selected.timeAdded, new Date())}</p> */}
                 <p>
-                  {selected.name} was here at: {selected.time}
+                  {selected.name} was here at: {moment(selected.timeAdded).format('MMMM Do YYYY, h:mm:ss a')}
+                  
                 </p>
               </div>
             </InfoWindow>

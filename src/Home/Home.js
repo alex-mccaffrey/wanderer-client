@@ -4,7 +4,7 @@ import FullMap from "../Map/FullMap/FullMap";
 import AddLocation from "../AddLocation/AddLocation2"
 //import Context, {Consumer} from "../Context"
 
-const Home = () => {
+const Home = (props) => {
 
   return (
     <div className="Home">
@@ -22,7 +22,7 @@ const Home = () => {
       </section>
       <section className="map-and-add">
       {/* <AddLocation /> */}
-      <FullMap/>
+      <FullMap newMarkerProp={props}/>
       </section>
     </div>
   );

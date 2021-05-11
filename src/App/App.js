@@ -29,6 +29,9 @@ const App = () => {
           render={(props) => (<Login {...props}/>)}
           />
           <PrivateRoute path="/home" component={Home}/>
+          {/* <PrivateRoute path="/add-location" 
+          render={(props) => (<AddLocation {...props}/>)}
+          /> */}
           <PrivateRoute path="/add-location" component={AddLocation}/>
           <Route component={PageNotFound}/>
           </Switch>

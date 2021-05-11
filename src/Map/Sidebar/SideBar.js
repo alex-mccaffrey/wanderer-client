@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./SideBar.css";
+import moment from "moment";
 
 function SideBar(props) {
   const markers = props.markers;
@@ -7,34 +8,15 @@ function SideBar(props) {
 
 
   const onClickZoom = (marker) => {
-    console.log("marker in onCLickZoom", marker)
     return sideBarZoom({
       lat: parseFloat(marker.latitude),
       lng: parseFloat(marker.longitude),
     });
   };
 
-  // const loadSideMarkers = useEffect((markers, onClickPanTo) => {
-  //   console.log("loadSideMakers is running");
-  //   return (
-  //     <ul>
-  //       {markers.map((marker) => (
-  //         <li
-  //           key={marker.id}
-  //           className="sidebar-markers"
-  //           onClick={() => {
-  //             onClickPanTo(marker);
-  //           }}
-  //         >
-  //           This is the marker id; {marker.id}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }, []);
 
   const loadSideMarkers = (markers, onClickZoom) => {
-    console.log("loadSideMakers is running");
+    if (markers.length > 0) {
     return (
       <ul className="sidebar-ul">
         {markers.map((marker) => (
@@ -45,11 +27,17 @@ function SideBar(props) {
               onClickZoom(marker);
             }}
           >
-            {marker.name} was here at: {marker.time}
+            {marker.name} was here {moment(marker.timeAdded).startOf('hour').fromNow()}
           </li>
         ))}
       </ul>
     );
+      }
+      else {
+        return (
+          <h3>There are no saved locations yet.</h3>
+        )
+      }
   };
 
   return (
