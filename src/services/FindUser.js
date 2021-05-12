@@ -21,9 +21,6 @@ export const FindUser = () => {
     ).textContent = `${latitude}, ${longitude}`;
 
     //Geocode.setApiKey(PROCESS.ENV.REACT_APP_GOOGLE_API_KEY)
-
-
-
   }
 
   function error() {

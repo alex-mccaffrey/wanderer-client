@@ -128,7 +128,6 @@ export default function FullMap({ name, notes, newMarkerProp }) {
         <div className="tempMarker">
           <Marker
             key={tempMarker.time}
-            draggable={true}
             position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
             icon={{
               url: "/walker.svg",
@@ -185,10 +184,10 @@ export default function FullMap({ name, notes, newMarkerProp }) {
               }}
             >
               <div>
-                <h2>{selected.name} was here.</h2>
+                <h2>{selected.name}</h2>
                 <p>{selected.notes}</p>
                 <p>
-                  {selected.name} was here at:{" "}
+                  Checked in{" "}
                   {moment(selected.timeAdded).format("MMMM Do YYYY, h:mm:ss a")}
                 </p>
               </div>

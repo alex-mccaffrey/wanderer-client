@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../images/wanderer-logo.png";
+import Logo from "../images/cover.png";
 import TokenService from "../services/token-service";
 
 import "./NavBar.css";
@@ -18,7 +18,7 @@ const NavBar = (props) => {
           <>
             <section className="logo">
               <a href="/home">
-                <img src={Logo} width="200px" />
+                <img src={Logo} width="320px" />
               </a>
             </section>
             <ul className="navbar-links">
@@ -27,7 +27,7 @@ const NavBar = (props) => {
             </Link>
 
             <Link className="nav-link" to="/add-location">
-              Add Location
+              Call Out
             </Link>
 
             <Link className="nav-link" to="/" onClick={logout}>
@@ -50,10 +50,6 @@ const NavBar = (props) => {
             <Link className="nav-link" to="/register">
               Register
             </Link>
-
-            {/* <Link className="nav-link" to="/">
-              Landing
-            </Link> */}
             </ul>
           </>
         )}

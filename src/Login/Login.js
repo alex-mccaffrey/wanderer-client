@@ -19,7 +19,11 @@ const Login = (props) => {
     .then((loginResponse) => {
       TokenService.saveAuthToken(loginResponse.authToken);
       props.history.push("/home");
-    })
+    //   props.history.push({
+    //   pathname: '/home',
+    //   state: { user: loggedInUser }
+    // })
+  })
     .catch(res => {
       setError(res.error)
     })

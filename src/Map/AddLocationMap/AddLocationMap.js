@@ -64,6 +64,25 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     });
   }, []);
 
+  // const markerDrag = React.useCallback((e) => {
+  //     // setTempMarker({
+  //     //    lat: e.latLng.lat(),
+  //     //    lng: e.latLng.lng(),
+  //     //    time: new Date(),
+  //     // }),
+  //     console.log("dragging lat lng", e.latLng.lat(), e.latLng.lng())
+  // }, []);
+
+  const onMarkerDragEnd = (event) => {
+    let newLat = event.latLng.lat(),
+        newLng = event.latLng.lng();
+        setTempMarker({
+          lat: newLat,
+          lng: newLng,
+          time: new Date(),
+        });
+  }
+
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
@@ -92,6 +111,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(22, 22),
             }}
+            onDragEnd={(e) => onMarkerDragEnd(e)}
             onClick={() => {
               setSelected(tempMarker);
             }}

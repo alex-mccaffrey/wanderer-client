@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { FindUser } from "../services/FindUser";
-import AddLocationExample from "../images/add-location-example.jpeg";
+import React, { useState } from "react";
 import AuthApiService from "../services/auth-api-service";
-//import GetAddress from "../services/GetAddress";
 import "./AddLocation.css";
 import AddLocationMap from "../Map/AddLocationMap/AddLocationMap";
 
@@ -60,8 +57,7 @@ function AddLocation(props) {
             onChange={(e) => setNotes(e.target.value)}
           />
         </section>
-
-        <br />
+        <p id="loading">A name is required, notes are optional. Once you're ready, click 'Find Me'. If needed, you can drag your marker around to the precise location, otherwise, click Submit!</p>
         <AddLocationMap
           name={name}
           notes={notes}
