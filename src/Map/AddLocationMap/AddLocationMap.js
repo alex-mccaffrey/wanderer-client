@@ -41,8 +41,8 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
   useEffect(getCenter, []);
 
   useEffect(() => {
-    setNewMarker(tempMarker)
-  }, [tempMarker])
+    setNewMarker(tempMarker);
+  }, [tempMarker]);
 
   const options = {
     styles: MapStyles,
@@ -74,7 +74,6 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     mapRef.current.setZoom(13);
   }, []);
 
-
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
@@ -102,40 +101,36 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     }
   };
 
-  
-
   return (
     <div className="Map">
       {/* <Locate panTo={panTo} setTempMarker={setTempMarker} setNewMarker={setNewMarker}/> */}
-      <Locate panTo={panTo} setTempMarker={setTempMarker}/>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          zoom={9}
-          center={center}
-          options={options}
-          onClick={onMapClick}
-          onLoad={onMapLoad}
-        >
-          {renderTempMarker()}
+      <Locate panTo={panTo} setTempMarker={setTempMarker} />
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={9}
+        center={center}
+        options={options}
+        onClick={onMapClick}
+        onLoad={onMapLoad}
+      >
+        {renderTempMarker()}
 
-          {selected ? (
-            <InfoWindow
-              position={{ lat: selected.lat, lng: selected.lng }}
-              onCloseClick={() => {
-                setSelected(null);
-              }}
-            >
-              <div>
-                <h2>{name} was here</h2>
-                <p>{notes}</p>
-                <p>
-                  I am here now: {formatRelative(selected.time, new Date())}
-                </p>
-              </div>
-            </InfoWindow>
-          ) : null}
-        </GoogleMap>
-        {/* <SubmitNewLocation tempMarker={tempMarker}/> */}
+        {selected ? (
+          <InfoWindow
+            position={{ lat: selected.lat, lng: selected.lng }}
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+            <div>
+              <h2>{name} was here</h2>
+              <p>{notes}</p>
+              <p>I am here now: {formatRelative(selected.time, new Date())}</p>
+            </div>
+          </InfoWindow>
+        ) : null}
+      </GoogleMap>
+      {/* <SubmitNewLocation tempMarker={tempMarker}/> */}
     </div>
   );
 }

@@ -33,9 +33,9 @@ export default function Locate({ panTo, setTempMarker }) {
     <button className="locate" onClick={(e) => locateServices(e)}>
       Find Me!
     </button>
-    <p id="status">
+    {/* <p id="status">
       Locating....
-    </p>
+    </p> */}
     </div>
   );
 }
