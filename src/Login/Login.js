@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import authApiService from "../services/auth-api-service"
 import TokenService from "../services/token-service"
 import {Spinner} from "../Spinner/Spinner"
-import { API_BASE_URL } from "../config";
 import "./Login.css";
 
 const Login = (props) => {

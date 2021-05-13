@@ -1,4 +1,4 @@
-export default [
+let MapStyles = [
     {
         "featureType": "water",
         "stylers": [
@@ -129,3 +129,5 @@ export default [
         ]
     }
 ]
+
+export default MapStyles

@@ -42,7 +42,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
 
   useEffect(() => {
     setNewMarker(tempMarker);
-  }, [tempMarker]);
+  }, [tempMarker, setNewMarker]);
 
   const options = {
     styles: MapStyles,
@@ -64,14 +64,6 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     });
   }, []);
 
-  // const markerDrag = React.useCallback((e) => {
-  //     // setTempMarker({
-  //     //    lat: e.latLng.lat(),
-  //     //    lng: e.latLng.lng(),
-  //     //    time: new Date(),
-  //     // }),
-  //     console.log("dragging lat lng", e.latLng.lat(), e.latLng.lng())
-  // }, []);
 
   const onMarkerDragEnd = (event) => {
     let newLat = event.latLng.lat(),

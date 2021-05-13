@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Route, Switch } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
@@ -29,9 +29,6 @@ const App = () => {
           render={(props) => (<Login {...props}/>)}
           />
           <PrivateRoute path="/home" component={Home}/>
-          {/* <PrivateRoute path="/add-location" 
-          render={(props) => (<AddLocation {...props}/>)}
-          /> */}
           <PrivateRoute path="/add-location" component={AddLocation}/>
           <Route component={PageNotFound}/>
           </Switch>

@@ -18,7 +18,7 @@ const NavBar = (props) => {
           <>
             <section className="logo">
               <a href="/home">
-                <img src={Logo} width="320px" />
+                <img src={Logo} width="320px" alt="wanderer-logo"/>
               </a>
             </section>
             <ul className="navbar-links">
@@ -39,7 +39,7 @@ const NavBar = (props) => {
           <>
             <section className="logo">
               <a href="/">
-                <img src={Logo} width="200px" />
+                <img src={Logo} width="200px" alt="wanderer-logo"/>
               </a>
             </section>
             <ul className="navbar-links">

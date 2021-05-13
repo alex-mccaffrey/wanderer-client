@@ -7,9 +7,14 @@
     font-family: Verdana;
   }
 
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
  .App {
-    position: relative;
+  position: relative;
   min-height: 100vh;
   padding-bottom: 2.5rem;
  }

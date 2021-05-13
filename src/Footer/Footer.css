@@ -1,6 +1,6 @@
 footer {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     position: absolute;
     left: 0;
@@ -10,4 +10,10 @@ footer {
     height: 2.5rem;
     width: 100%;
     overflow: hidden;
+}
+
+
+.icon {
+    color: white;
+    margin-left: 15px;
 }

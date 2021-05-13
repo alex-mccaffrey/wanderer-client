@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./FullMap.css";
-import DummyData from "../DummyData";
 import MapStyles from "./mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
@@ -11,10 +10,9 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { formatRelative } from "date-fns";
 import moment from "moment";
 
-export default function FullMap({ name, notes, newMarkerProp }) {
+export default function FullMap() {
   const libraries = ["places"];
   const mapContainerStyle = {
     width: "400px",
@@ -32,7 +30,6 @@ export default function FullMap({ name, notes, newMarkerProp }) {
   }, []);
 
   const [markers, setMarkers] = React.useState([]);
-  //const [markers, setMarkers] = React.useState(DummyData);
   const [selected, setSelected] = React.useState(null);
   const [tempMarker, setTempMarker] = React.useState({});
 
@@ -48,9 +45,8 @@ export default function FullMap({ name, notes, newMarkerProp }) {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        setCenter(newCenter); /// this is the successful call
+        setCenter(newCenter);
       },
-      //() => null ///this is the error
       () => alert("There was an error getting your location")
     );
   };
@@ -90,18 +86,10 @@ export default function FullMap({ name, notes, newMarkerProp }) {
     }
   };
 
-  // const onMapClick = React.useCallback((e) => {
-  //   console.log("setting temp marker on click")
-  //   setTempMarker({
-  //     lat: e.latLng.lat(),
-  //     lng: e.latLng.lng(),
-  //     timeAdded: new Date(),
-  //   });
-  // }, []);
 
-  const onMapClick = React.useCallback((e) => {
-    console.log(e.latLng.lat(), e.latLng.lng());
-  });
+  // const onMapClick = React.useCallback((e) => {
+  //   console.log(e.latLng.lat(), e.latLng.lng());
+  // });
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -155,21 +143,10 @@ export default function FullMap({ name, notes, newMarkerProp }) {
           zoom={9}
           center={center}
           options={options}
-          onClick={onMapClick}
+          //onClick={onMapClick}
           onLoad={onMapLoad}
         >
           {markerMap()}
-
-          {/* {DummyData.map((marker) => (
-            <Marker
-              key={marker.time}
-              position={{ lat: marker.latitude, lng: marker.longitude }}
-              onClick={() => {
-                setSelected(marker);
-                setCenter({ lat: marker.latitude, lng: marker.longitude })
-              }}
-            />
-          ))} */}
 
           {renderTempMarker()}
 

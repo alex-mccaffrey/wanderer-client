@@ -1,38 +1,40 @@
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
+//import 'font-awesome/css/font-awesome.min.css';
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer>
       <h3> &#169; Alex McCaffrey</h3>
-      {/* <section className="social-icons">
-      <a
-        class="social-btn"
-        href="https://github.com/amccaff20"
-        target="_blank"
+      <section className="social-icons">
+        <a
+        className="social-btn"
+        href="mailto:alexmccaffrey07@gmail.com"
         rel="noopener noreferrer"
       >
-        {" "}
-        <FontAwesomeIcon icon={faGithub} size="2x" />
-        <i class="far fa-linkedin"></i>
+        <FontAwesomeIcon icon={faEnvelope} className="icon" />
       </a>
-      <a
-        class="btn btn-dark btn-social mx-2"
-        href="https://github.com/amccaff20"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i class="fab fa-github"></i>
-      </a>
-      <a
-        class="social-btn"
-        href="https://www.linkedin.com/in/alex-mccaffrey"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {" "}
-        <FontAwesomeIcon icon={faLinkedin} size="2x" />
-      </a>
-    </section> */}
+        <a
+          className="social-btn"
+          href="https://github.com/amccaff20"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faGithub} className="icon" />
+        </a>
+
+        <a
+          className="social-btn"
+          href="https://www.linkedin.com/in/alex-mccaffrey"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faLinkedin} className="icon" />
+        </a>
+      </section>
     </footer>
   );
 };

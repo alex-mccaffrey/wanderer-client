@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Home.css";
 import FullMap from "../Map/FullMap/FullMap";
 
 
 const Home = (props) => {
-
-
 
   return (
     <div className="Home">
