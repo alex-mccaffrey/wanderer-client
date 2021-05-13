@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import authApiService from "../services/auth-api-service"
 import TokenService from "../services/token-service"
+import {Spinner} from "../Spinner/Spinner"
 import { API_BASE_URL } from "../config";
 import "./Login.css";
 
@@ -8,10 +9,12 @@ const Login = (props) => {
 
 
   const [error, setError] = useState("")
+  const [loggedInState, setLoggedInState] = useState()
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoggedInState("logging in")
     const { username, password } = e.target;
     const user = { username: username.value, password: password.value };
     setError(null)
@@ -31,6 +34,7 @@ const Login = (props) => {
 
   return (
     <section className="login">
+      {loggedInState === "logging in" ? <Spinner /> : ""}
       <h3>Login</h3>
       {error && <p className="error" style={{color: 'red'}}>{error}</p>}
       <p>Demo Account: Username "Demo", Password "DemoPassword123!"</p>
