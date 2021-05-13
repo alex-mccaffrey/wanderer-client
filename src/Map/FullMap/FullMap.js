@@ -3,6 +3,7 @@ import "./FullMap.css";
 import MapStyles from "./mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
+import Search from "../Search/Search"
 import AuthApiService from "../../services/auth-api-service";
 import {
   GoogleMap,
@@ -87,9 +88,9 @@ export default function FullMap() {
   };
 
 
-  // const onMapClick = React.useCallback((e) => {
-  //   console.log(e.latLng.lat(), e.latLng.lng());
-  // });
+  const onMapClick = React.useCallback((e) => {
+    setSelected(null);
+  });
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -132,18 +133,23 @@ export default function FullMap() {
     }
   };
 
+  // const onMapDragStart = (event) => {
+  //       setTempMarker(null);
+  // }
+
   return (
     <div className="Map">
       <Locate panTo={panTo} setTempMarker={setTempMarker} />
       {/* <Search panTo={panTo} />  */}
       <section className="map-and-sidebar">
-        <SideBar markers={markers} sideBarZoom={sideBarZoom} />
+        <SideBar markers={markers} sideBarZoom={sideBarZoom} setSelected={setSelected}/>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={9}
           center={center}
           options={options}
-          //onClick={onMapClick}
+          // onDragEnd={(e) => onMapDragStart(e)}
+          onClick={onMapClick}
           onLoad={onMapLoad}
         >
           {markerMap()}

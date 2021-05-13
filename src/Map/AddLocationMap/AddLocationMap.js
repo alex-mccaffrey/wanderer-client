@@ -17,6 +17,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     height: "400px",
   };
 
+  
   const [selected, setSelected] = React.useState(null);
   const [tempMarker, setTempMarker] = React.useState({});
 
