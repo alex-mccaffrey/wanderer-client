@@ -3,8 +3,8 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;;
-    height: 400px;
-    width: 150px;
+    height: 500px;
+    width: 100px;
     background-color: #034a4a;
     overflow: scroll;
 }
@@ -15,7 +15,7 @@
     align-items: center;
     flex-direction: column;
     list-style: none;
-    height: 400px;
+    height: 500px;
     padding: 0;
     margin:0;
     padding-inline-start: 0;
@@ -24,7 +24,11 @@
     overflow: scroll;
 }
 
-li {
+.sidebar-markers {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
     border: 2px;
     color: white;
     border-radius: 10px;
@@ -33,10 +37,4 @@ li {
     margin: 10px;
     cursor: pointer;
     font-size: 12px;
-}
-
-.sidebar-markers {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
 }

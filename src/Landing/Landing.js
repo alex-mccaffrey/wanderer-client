@@ -10,7 +10,7 @@ function Landing() {
           friends.
         </h2>
       </section>
-      <section>
+      <section className="about">
         <h3>What is this?</h3>
         <p>
           Wanderer was developed to bridge the gap between safety and privacy.
@@ -21,8 +21,8 @@ function Landing() {
           whereabouts.
         </p>
       </section>
-      <section>
-        <h3>How to use Wanderer</h3>
+      <section className="about">
+        <h3>How to Wander</h3>
         <p>
           Users have the ability to create a group account...this would be a
           group of friends, family, or co-workers. Whenever a user logs in to

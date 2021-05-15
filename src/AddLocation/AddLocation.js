@@ -34,6 +34,7 @@ function AddLocation(props) {
   return (
     <div className="AddLocation">
       <h2>Add Location</h2>
+      <p className="add-location-about">A name is required, notes are optional. Once you're ready, click 'Find Me'. If needed, you can drag your pin around to the precise location, otherwise, click Submit!</p>
       <form id="new-location" onSubmit={handleSubmit}>
         <section className="form-section overview-section">
           <label htmlFor="who" className="who">
@@ -57,14 +58,14 @@ function AddLocation(props) {
             onChange={(e) => setNotes(e.target.value)}
           />
         </section>
-        <p id="loading">A name is required, notes are optional. Once you're ready, click 'Find Me'. If needed, you can drag your marker around to the precise location, otherwise, click Submit!</p>
+        <p id="addLoad">Click "Find Me" gather your location</p>
         <AddLocationMap
           name={name}
           notes={notes}
           newMarker={newMarker}
           setNewMarker={setNewMarker}
         />
-        <button type="submit" disabled={disableSubmit()}>
+        <button type="submit" className="submit" disabled={disableSubmit()}>
           Submit
         </button>
       </form>

@@ -17,7 +17,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     height: "400px",
   };
 
-  
+
   const [selected, setSelected] = React.useState(null);
   const [tempMarker, setTempMarker] = React.useState({});
 
@@ -98,12 +98,13 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
             key={tempMarker.time}
             draggable={true}
             position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
-            icon={{
-              url: "/walker.svg",
-              scaledSize: new window.google.maps.Size(40, 40),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(22, 22),
-            }}
+            // icon={{
+            //   url: "/walker.svg",
+            //   scaledSize: new window.google.maps.Size(40, 40),
+            //   origin: new window.google.maps.Point(0, 0),
+            //   anchor: new window.google.maps.Point(22, 22),
+            // }}
+            icon={{ url: "http://maps.google.com/mapfiles/ms/icons/blue.png" }}
             onDragEnd={(e) => onMarkerDragEnd(e)}
             onClick={() => {
               setSelected(tempMarker);

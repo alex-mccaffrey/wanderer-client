@@ -1,0 +1,30 @@
+.AddLocation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+}
+
+.add-location-about {
+border-color: black;
+border-style: dashed;
+border-radius: 15px;
+margin: 15px;
+padding: 10px;
+}
+
+
+#addLoad {
+    border-color: black;
+    border-style: dashed;
+    border-radius: 15px;
+    margin: 15px;   
+    padding: 10px;
+    }
+
+.submit {
+    width: 100px;
+    height: 50px;
+    margin-bottom: 30px;
+}

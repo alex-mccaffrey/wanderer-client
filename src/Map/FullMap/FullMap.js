@@ -3,7 +3,7 @@ import "./FullMap.css";
 import MapStyles from "./mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
-import Search from "../Search/Search"
+import Search from "../Search/Search";
 import AuthApiService from "../../services/auth-api-service";
 import {
   GoogleMap,
@@ -16,8 +16,8 @@ import moment from "moment";
 export default function FullMap() {
   const libraries = ["places"];
   const mapContainerStyle = {
-    width: "400px",
-    height: "400px",
+    width: "500px",
+    height: "500px",
   };
 
   const getAllMarkers = () => {
@@ -71,22 +71,24 @@ export default function FullMap() {
       return markers.map((marker) => (
         <Marker
           key={marker.id}
+          anchor={{
+            lat: parseFloat(marker.latitude),
+            lng: parseFloat(marker.longitude),
+          }}
           position={{
             lat: parseFloat(marker.latitude),
             lng: parseFloat(marker.longitude),
           }}
+          icon={{ url: "http://maps.google.com/mapfiles/ms/icons/red.png" }}
           onClick={() => {
             setSelected(marker);
-            setCenter({
-              lat: parseFloat(marker.latitude),
-              lng: parseFloat(marker.longitude),
-            });
+            setCenter({lat: parseFloat(marker.latitude),
+              lng: parseFloat(marker.longitude)})
           }}
         />
       ));
     }
   };
-
 
   const onMapClick = React.useCallback((e) => {
     setSelected(null);
@@ -117,13 +119,15 @@ export default function FullMap() {
         <div className="tempMarker">
           <Marker
             key={tempMarker.time}
+            anchor={{ lat: tempMarker.lat, lng: tempMarker.lng }}
             position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
-            icon={{
-              url: "/walker.svg",
-              scaledSize: new window.google.maps.Size(40, 40),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(22, 22),
-            }}
+            // icon={{
+            //   url: "/walker.svg",
+            //   scaledSize: new window.google.maps.Size(40, 40),
+            //   origin: new window.google.maps.Point(0, 0),
+            //   anchor: new window.google.maps.Point(22, 22),
+            // }}
+            icon={{ url: "http://maps.google.com/mapfiles/ms/icons/blue.png" }}
             onClick={() => {
               setSelected(tempMarker);
             }}
@@ -133,16 +137,20 @@ export default function FullMap() {
     }
   };
 
-  // const onMapDragStart = (event) => {
-  //       setTempMarker(null);
-  // }
+  const onMapDragStart = () => {
+        setSelected(null);
+  }
 
   return (
     <div className="Map">
       <Locate panTo={panTo} setTempMarker={setTempMarker} />
       {/* <Search panTo={panTo} />  */}
       <section className="map-and-sidebar">
-        <SideBar markers={markers} sideBarZoom={sideBarZoom} setSelected={setSelected}/>
+        <SideBar
+          markers={markers}
+          sideBarZoom={sideBarZoom}
+          setSelected={setSelected}
+        />
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={9}
@@ -151,33 +159,43 @@ export default function FullMap() {
           // onDragEnd={(e) => onMapDragStart(e)}
           onClick={onMapClick}
           onLoad={onMapLoad}
+          onDragStart={onMapDragStart}
         >
           {markerMap()}
 
           {renderTempMarker()}
 
-          {selected ? (
-            <InfoWindow
-              position={{
-                lat: parseFloat(selected.lat),
-                lng: parseFloat(selected.lng),
-              }}
-              onCloseClick={() => {
-                setSelected(null);
-              }}
-            >
-              <div>
-                <h2>{selected.name}</h2>
-                <p>{selected.notes}</p>
-                <p>
-                  Checked in{" "}
-                  {moment(selected.timeAdded).format("MMMM Do YYYY, h:mm:ss a")}
-                </p>
-              </div>
-            </InfoWindow>
-          ) : null}
+          {selected
+            ? (console.log(selected),
+              (
+                <InfoWindow
+                  position={{
+                    lat: parseFloat(selected.lat),
+                    lng: parseFloat(selected.lng),
+                  }}
+                  options={{
+                    pixelOffset: new window.google.maps.Size(0, -20),
+                    maxWidth: 200,
+                  }}
+                  onCloseClick={() => {
+                    setSelected(null);
+                  }}
+                >
+                  <div className="infowindow">
+                    <p>{selected.name}<br/>
+                    {selected.notes}<br/>
+                    <br />
+                      Checked in{" "}
+                      {moment(selected.timeAdded).format(
+                        "MMMM Do YYYY, h:mm:ss a"
+                      )}
+                    </p>
+                  </div>
+                </InfoWindow>
+              ))
+            : null}
         </GoogleMap>
-      </section>
+        </section>
     </div>
   );
 }

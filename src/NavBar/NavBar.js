@@ -18,12 +18,15 @@ const NavBar = (props) => {
           <>
             <section className="logo">
               <a href="/home">
-                <img src={Logo} width="320px" alt="wanderer-logo"/>
+                <img src={Logo} className="nav-logo" alt="wanderer-logo"/>
               </a>
             </section>
             <ul className="navbar-links">
-            <Link className="nav-link" to="/home">
+            <Link className="nav-link" to="/">
               Home
+            </Link>
+            <Link className="nav-link" to="/home">
+              Dashboard
             </Link>
 
             <Link className="nav-link" to="/add-location">

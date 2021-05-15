@@ -1,21 +1,32 @@
 .landing {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 500px;
 }
 
+h1 {
+  font-size: 45px;
+  font-weight: bold;
+}
 
-
-h1, h2 {
-    margin: 20px;
+h1,
+h2 {
+  margin: 20px;
 }
 
 h3 {
-    margin: 20px 0px;
+  margin: 20px 0px;
 }
 
 p {
-    margin: 15px;
+  margin: 15px;
+}
+
+.about {
+  border-color: black;
+  border-style: dashed;
+  border-radius: 15px;
+  margin: 15px;
 }

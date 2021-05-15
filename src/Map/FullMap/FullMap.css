@@ -1,18 +1,37 @@
 .Map {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
 
-  .map-and-sidebar {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  /* h1 {
+.map-and-sidebar {
+  display: flex;
+  flex-direction: row;
+}
+
+/* .map-and-sidebar {
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+} */
+
+
+/* .map-and-sidebar{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+} */
+
+/* h1 {
     position: absolute;
     top: 1rem;
     left: 1rem;
@@ -23,32 +42,27 @@
     border-radius: 15px;
     padding-left: 3px;
   } */
-  
-  .search {
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translate(-50%);
-    width: 100%;
-    max-width: 300px;
-    z-index: 10;
-  }
-  
-  .search input {
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    width: 100%;
-  }
-  
-  .locate {
-    top: 1rem;
-    right: 1rem;
-    z-index: 10;
-    cursor: pointer;
-    margin: 20px;
-  }
-  
-  
-  
-  
-  
+
+.search {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  max-width: 300px;
+  z-index: 10;
+}
+
+.search input {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.locate {
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  cursor: pointer;
+  margin: 20px;
+}
