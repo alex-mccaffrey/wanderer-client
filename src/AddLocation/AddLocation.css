@@ -14,13 +14,23 @@ margin: 15px;
 padding: 10px;
 }
 
+input {
+    margin-bottom: 20px;
+}
 
-#addLoad {
-    border-color: black;
-    border-style: dashed;
-    border-radius: 15px;
-    margin: 15px;   
-    padding: 10px;
+.addList {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+    .addList li {
+        text-align: left;
+        list-style-position: inside;
+        list-style-type:disc;
+        /* padding-left: 30px;
+        padding-right: 30px; */
+        margin-bottom: 10px;
     }
 
 .submit {

@@ -1,0 +1,19 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+}
+
+.howto-register {
+  border-color: black;
+  border-style: dashed;
+  border-radius: 15px;
+  margin: 15px;
+  margin-bottom: 50px;
+}
+
+.register-button {
+    padding: 5px;
+}

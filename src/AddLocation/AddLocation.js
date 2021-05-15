@@ -33,8 +33,23 @@ function AddLocation(props) {
 
   return (
     <div className="AddLocation">
-      <h2>Add Location</h2>
-      <p className="add-location-about">A name is required, notes are optional. Once you're ready, click 'Find Me'. If needed, you can drag your pin around to the precise location, otherwise, click Submit!</p>
+      <h1>Add Location</h1>
+      <section className="add-location-about">
+        <ul className="addList">
+          <li>Enter your name so others know who was here.</li>
+          <li>
+            {" "}
+            Use the details section if you want to add a note, joke, or piece of
+            wisdom.
+          </li>
+          <li>
+            {" "}
+            Once you're ready, click 'Find Me'. If needed, you can drag your pin
+            around to the precise location, otherwise, click Submit!
+          </li>
+        </ul>
+        <br />
+      </section>
       <form id="new-location" onSubmit={handleSubmit}>
         <section className="form-section overview-section">
           <label htmlFor="who" className="who">
@@ -50,6 +65,10 @@ function AddLocation(props) {
             onChange={(e) => setName(e.target.value)}
           />
           <br />
+          <label htmlFor="notes" className="notes">
+            Notes
+          </label>
+          <br/>
           <input
             type="text"
             name="notes"

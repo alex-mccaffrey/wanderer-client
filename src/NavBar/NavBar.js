@@ -17,7 +17,7 @@ const NavBar = (props) => {
         {TokenService.hasAuthToken() ? (
           <>
             <section className="logo">
-              <a href="/home">
+              <a href="/">
                 <img src={Logo} className="nav-logo" alt="wanderer-logo"/>
               </a>
             </section>
