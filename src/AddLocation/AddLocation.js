@@ -33,7 +33,7 @@ function AddLocation(props) {
 
   return (
     <div className="AddLocation">
-      <h1>Add Location</h1>
+      <h1>Call Out!</h1>
       <section className="add-location-about">
         <ul className="addList">
           <li>Enter your name so others know who was here.</li>
@@ -45,7 +45,7 @@ function AddLocation(props) {
           <li>
             {" "}
             Once you're ready, click 'Find Me'. If needed, you can drag your pin
-            around to the precise location, otherwise, click Submit!
+            around to the precise location. Once everything looks good, click Submit!
           </li>
         </ul>
         <br />

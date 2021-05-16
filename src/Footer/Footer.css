@@ -2,11 +2,10 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: absolute;/* change back to absolute */
+    position: absolute;
     left: 0;
     bottom: 0;
-    top: 1500px; /*take out */
-    background-color: #064a49;
+        background-color: #064a49;
     color: white;
     height: 2.5rem;
     width: 100%;

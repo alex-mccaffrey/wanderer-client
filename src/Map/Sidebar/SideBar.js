@@ -20,7 +20,7 @@ function SideBar(props) {
     if (markers.length > 0) {
     return (
       <ul className="sidebar-ul">
-        {markers.map((marker) => (
+        {markers.slice(0).reverse().map((marker) => (
           <li
             key={marker.id}
             className="sidebar-markers"

@@ -16,8 +16,10 @@ import moment from "moment";
 export default function FullMap() {
   const libraries = ["places"];
   const mapContainerStyle = {
-    height: "500px",
-    width: "500px",
+    width:"400px",
+    height: "400px",
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",  
   };
 
   const getAllMarkers = () => {
@@ -153,6 +155,7 @@ export default function FullMap() {
           sideBarZoom={sideBarZoom}
           setSelected={setSelected}
         />
+        <div className="googleMap">
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={9}
@@ -200,6 +203,7 @@ export default function FullMap() {
               ))
             : null}
         </GoogleMap>
+        </div>
       </section>
     </div>
   );

@@ -11,6 +11,10 @@
     /* font-family: Verdana; */
   }
 
+  body {
+    background-color: bisque;
+  }
+
   main {
     display: flex;
     justify-content: center;
