@@ -93,9 +93,7 @@ export default function FullMap() {
       ));
     }
   };
-
- useEffect(markerMap())
-
+  
   const onMapClick = React.useCallback((e) => {
     setSelected(null);
   });
