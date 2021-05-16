@@ -13,6 +13,7 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoggedInState("logging in")
     const { username, password } = e.target;
     const user = { username: username.value, password: password.value };
     setError(null)
@@ -20,13 +21,13 @@ const Login = (props) => {
     .then((loginResponse) => {
       TokenService.saveAuthToken(loginResponse.authToken);
       props.history.push("/home");
-      setLoggedInState("logging in")
     //   props.history.push({
     //   pathname: '/home',
     //   state: { user: loggedInUser }
     // })
   })
     .catch(res => {
+      setLoggedInState("")
       setError(res.error)
     })
   };
