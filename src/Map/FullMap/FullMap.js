@@ -16,8 +16,8 @@ import moment from "moment";
 export default function FullMap() {
   const libraries = ["places"];
   const mapContainerStyle = {
-    width:"400px",
-    height: "400px",
+    width:"70vw",
+    height: "70vh",
     borderTopRightRadius: "10px",
     borderBottomRightRadius: "10px",  
   };

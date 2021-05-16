@@ -7,9 +7,9 @@
   margin-bottom: 20px;
   height: 100%;
   width: 100%;
-  position: relative;
+  /* position: relative;
   margin: 0;
-  place-items: center;
+  place-items: center; */
 }
 
 .map-and-sidebar {
@@ -17,7 +17,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  overflow: hidden;
+  left: 0px;
+  bottom: 0;
+  top: 500px;
+  height: 100%;
+  width: 100%;
 }
 
 /* .googleMap {
@@ -30,8 +35,7 @@
   border-radius:3px;
 } */
 
-
-  /* .map-and-sidebar {
+/* .map-and-sidebar {
     display: flex;
     flex-direction: row;
   place-items: center;
@@ -76,4 +80,3 @@
   cursor: pointer;
   margin: 20px;
 }
-
