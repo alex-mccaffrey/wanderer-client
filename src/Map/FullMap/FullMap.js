@@ -16,7 +16,7 @@ import moment from "moment";
 export default function FullMap() {
   const libraries = ["places"];
   const mapContainerStyle = {
-    width:"70vw",
+    width:"65vw",
     height: "70vh",
     borderTopRightRadius: "10px",
     borderBottomRightRadius: "10px",  
@@ -94,6 +94,8 @@ export default function FullMap() {
     }
   };
 
+ useEffect(markerMap())
+
   const onMapClick = React.useCallback((e) => {
     setSelected(null);
   });
@@ -166,6 +168,7 @@ export default function FullMap() {
           onLoad={onMapLoad}
           onDragStart={onMapDragStart}
         >
+          
           {markerMap()}
 
           {renderTempMarker()}
