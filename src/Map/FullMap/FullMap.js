@@ -16,8 +16,8 @@ import moment from "moment";
 export default function FullMap() {
   const libraries = ["places"];
   const mapContainerStyle = {
-    width: "500px",
     height: "500px",
+    width: "500px",
   };
 
   const getAllMarkers = () => {
@@ -82,8 +82,10 @@ export default function FullMap() {
           icon={{ url: "http://maps.google.com/mapfiles/ms/icons/red.png" }}
           onClick={() => {
             setSelected(marker);
-            setCenter({lat: parseFloat(marker.latitude),
-              lng: parseFloat(marker.longitude)})
+            setCenter({
+              lat: parseFloat(marker.latitude),
+              lng: parseFloat(marker.longitude),
+            });
           }}
         />
       ));
@@ -138,8 +140,8 @@ export default function FullMap() {
   };
 
   const onMapDragStart = () => {
-        setSelected(null);
-  }
+    setSelected(null);
+  };
 
   return (
     <div className="Map">
@@ -182,9 +184,12 @@ export default function FullMap() {
                   }}
                 >
                   <div className="infowindow">
-                    <p>{selected.name}<br/>
-                    {selected.notes}<br/>
-                    <br />
+                    <p>
+                      {selected.name}
+                      <br />
+                      {selected.notes}
+                      <br />
+                      <br />
                       Checked in{" "}
                       {moment(selected.timeAdded).format(
                         "MMMM Do YYYY, h:mm:ss a"
@@ -195,7 +200,7 @@ export default function FullMap() {
               ))
             : null}
         </GoogleMap>
-        </section>
+      </section>
     </div>
   );
 }

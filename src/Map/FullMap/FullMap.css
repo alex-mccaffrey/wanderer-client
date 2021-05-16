@@ -5,12 +5,21 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  position: relative;
+  /* position: relative; */
 }
 
 .map-and-sidebar {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+  left:0px;
+    bottom: 0;
+    top: 500px;
+    height: 100%;
+    width: 100%;
 }
 
 /* .map-and-sidebar {
@@ -20,10 +29,9 @@
   position: absolute;
   height: 100%;
   width: 100%;
-} */
+}  */
 
-
-/* .map-and-sidebar{
+/* .google-map{
     left:0;
     top:0;
     height:100%;
@@ -66,3 +74,4 @@
   cursor: pointer;
   margin: 20px;
 }
+
