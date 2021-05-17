@@ -13,8 +13,8 @@ import { formatRelative } from "date-fns";
 export default function AddLocationMap({ name, notes, setNewMarker }) {
   const libraries = ["places"];
   const mapContainerStyle = {
-    width: "400px",
-    height: "400px",
+    width: "500px",
+    height: "500px",
   };
 
 

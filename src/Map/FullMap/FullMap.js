@@ -93,7 +93,7 @@ export default function FullMap() {
       ));
     }
   };
-  
+
   const onMapClick = React.useCallback((e) => {
     setSelected(null);
   });
