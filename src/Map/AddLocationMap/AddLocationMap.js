@@ -53,7 +53,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
   };
 
   const { isLoaded, loadError } = useLoadScript({
-    //googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
