@@ -13,8 +13,9 @@ import { formatRelative } from "date-fns";
 export default function AddLocationMap({ name, notes, setNewMarker }) {
   const libraries = ["places"];
   const mapContainerStyle = {
-    width: "500px",
-    height: "500px",
+    width:"65vw",
+    height: "65vh",
+    borderRadius: "10px",
   };
 
 
@@ -53,7 +54,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
   };
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    //googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 

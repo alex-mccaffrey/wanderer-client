@@ -3,7 +3,6 @@ import "./FullMap.css";
 import MapStyles from "./mapStyles";
 import SideBar from "../Sidebar/SideBar";
 import Locate from "../Locate/Locate";
-import Search from "../Search/Search";
 import AuthApiService from "../../services/auth-api-service";
 import {
   GoogleMap,
@@ -64,7 +63,7 @@ export default function FullMap() {
   };
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    //googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
