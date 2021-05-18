@@ -1,22 +1,20 @@
-import React from 'react'
-import "./Search.css"
+import React from "react";
+import "./Search.css";
 
 import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-  } from "use-places-autocomplete";
-  import {
-    Combobox,
-    ComboboxInput,
-    ComboboxOption,
-    ComboboxList,
-    ComboboxPopover,
-  } from "@reach/combobox";
-  import "@reach/combobox/styles.css";
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxList,
+  ComboboxPopover,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
 
-
-
-  //////////// Search Bar /////////////////
+//////////// Search Bar /////////////////
 export default function Search({ panTo }) {
   const {
     ready,

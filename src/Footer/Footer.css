@@ -1,19 +1,18 @@
 footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-        background-color: #064a49;
-    color: white;
-    height: 2.5rem;
-    width: 100%;
-    overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #064a49;
+  color: white;
+  height: 2.5rem;
+  width: 100%;
+  overflow: hidden;
 }
 
-
 .icon {
-    color: white;
-    margin-left: 15px;
+  color: white;
+  margin-left: 15px;
 }

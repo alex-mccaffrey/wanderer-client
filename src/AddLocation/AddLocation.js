@@ -45,7 +45,8 @@ function AddLocation(props) {
           <li>
             {" "}
             Once you're ready, click 'Find Me'. If needed, you can drag your pin
-            around to the precise location. Once everything looks good, click Submit!
+            around to the precise location. Once everything looks good, click
+            Submit!
           </li>
         </ul>
         <br />
@@ -68,7 +69,7 @@ function AddLocation(props) {
           <label htmlFor="notes" className="notes">
             Notes
           </label>
-          <br/>
+          <br />
           <input
             type="text"
             name="notes"

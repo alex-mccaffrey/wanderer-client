@@ -12,10 +12,9 @@ nav {
 }
 
 .nav-link {
-  margin: 5px 8px;  
+  margin: 5px 8px;
   text-decoration: none;
   color: white;
-  
 }
 
 .navbar-links {
@@ -25,7 +24,6 @@ nav {
   align-items: center;
   flex-wrap: wrap;
 }
-
 
 .nav-logo {
   max-width: 30%;

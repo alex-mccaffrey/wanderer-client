@@ -1,8 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
-//import 'font-awesome/css/font-awesome.min.css';
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import "./Footer.css";
 
 const Footer = () => {
@@ -11,12 +10,12 @@ const Footer = () => {
       <h3> &#169; Alex McCaffrey</h3>
       <section className="social-icons">
         <a
-        className="social-btn"
-        href="mailto:alexmccaffrey07@gmail.com"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faEnvelope} className="icon" />
-      </a>
+          className="social-btn"
+          href="mailto:alexmccaffrey07@gmail.com"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faEnvelope} className="icon" />
+        </a>
         <a
           className="social-btn"
           href="https://github.com/amccaff20"

@@ -13,15 +13,14 @@ const NavBar = (props) => {
 
   return (
     <nav>
-      
-        {TokenService.hasAuthToken() ? (
-          <>
-            <section className="logo">
-              <a href="/">
-                <img src={Logo} className="nav-logo" alt="wanderer-logo"/>
-              </a>
-            </section>
-            <ul className="navbar-links">
+      {TokenService.hasAuthToken() ? (
+        <>
+          <section className="logo">
+            <a href="/">
+              <img src={Logo} className="nav-logo" alt="wanderer-logo" />
+            </a>
+          </section>
+          <ul className="navbar-links">
             <Link className="nav-link" to="/">
               Home
             </Link>
@@ -36,16 +35,16 @@ const NavBar = (props) => {
             <Link className="nav-link" to="/" onClick={logout}>
               Logout
             </Link>
-            </ul>
-          </>
-        ) : (
-          <>
-            <section className="logo">
-              <a href="/">
-                <img src={Logo} width="200px" alt="wanderer-logo"/>
-              </a>
-            </section>
-            <ul className="navbar-links">
+          </ul>
+        </>
+      ) : (
+        <>
+          <section className="logo">
+            <a href="/">
+              <img src={Logo} width="200px" alt="wanderer-logo" />
+            </a>
+          </section>
+          <ul className="navbar-links">
             <Link className="nav-link" to="/login">
               Login
             </Link>
@@ -53,9 +52,9 @@ const NavBar = (props) => {
             <Link className="nav-link" to="/register">
               Register
             </Link>
-            </ul>
-          </>
-        )}
+          </ul>
+        </>
+      )}
     </nav>
   );
 };

@@ -1,14 +1,3 @@
-// import { render, screen } from '@testing-library/react';
-// import App from './App';
-
-// test('renders wanderer title', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/wanderer/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
-
-
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'

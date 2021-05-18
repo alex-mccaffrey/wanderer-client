@@ -13,11 +13,10 @@ import { formatRelative } from "date-fns";
 export default function AddLocationMap({ name, notes, setNewMarker }) {
   const libraries = ["places"];
   const mapContainerStyle = {
-    width:"65vw",
+    width: "65vw",
     height: "65vh",
     borderRadius: "10px",
   };
-
 
   const [selected, setSelected] = React.useState(null);
   const [tempMarker, setTempMarker] = React.useState({});
@@ -66,16 +65,15 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     });
   }, []);
 
-
   const onMarkerDragEnd = (event) => {
     let newLat = event.latLng.lat(),
-        newLng = event.latLng.lng();
-        setTempMarker({
-          lat: newLat,
-          lng: newLng,
-          time: new Date(),
-        });
-  }
+      newLng = event.latLng.lng();
+    setTempMarker({
+      lat: newLat,
+      lng: newLng,
+      time: new Date(),
+    });
+  };
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -99,12 +97,6 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
             key={tempMarker.time}
             draggable={true}
             position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
-            // icon={{
-            //   url: "/walker.svg",
-            //   scaledSize: new window.google.maps.Size(40, 40),
-            //   origin: new window.google.maps.Point(0, 0),
-            //   anchor: new window.google.maps.Point(22, 22),
-            // }}
             icon={{ url: "http://maps.google.com/mapfiles/ms/icons/blue.png" }}
             onDragEnd={(e) => onMarkerDragEnd(e)}
             onClick={() => {
@@ -118,7 +110,6 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
 
   return (
     <div className="Map">
-      {/* <Locate panTo={panTo} setTempMarker={setTempMarker} setNewMarker={setNewMarker}/> */}
       <Locate panTo={panTo} setTempMarker={setTempMarker} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -145,7 +136,6 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
           </InfoWindow>
         ) : null}
       </GoogleMap>
-      {/* <SubmitNewLocation tempMarker={tempMarker}/> */}
     </div>
   );
 }

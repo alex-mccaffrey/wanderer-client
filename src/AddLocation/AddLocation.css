@@ -1,41 +1,39 @@
 .AddLocation {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
 }
 
 .add-location-about {
-border-color: black;
-border-style: dashed;
-border-radius: 15px;
-margin: 15px;
-padding: 10px;
+  border-color: black;
+  border-style: dashed;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 10px;
 }
 
 input {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .addList {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
-    .addList li {
-        text-align: left;
-        list-style-position: inside;
-        list-style-type:disc;
-        /* padding-left: 30px;
-        padding-right: 30px; */
-        margin-bottom: 10px;
-    }
+.addList li {
+  text-align: left;
+  list-style-position: inside;
+  list-style-type: disc;
+  margin-bottom: 10px;
+}
 
 .submit {
-    width: 100px;
-    height: 50px;
-    margin-bottom: 30px;
-    margin-top: 30px;
+  width: 100px;
+  height: 50px;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
