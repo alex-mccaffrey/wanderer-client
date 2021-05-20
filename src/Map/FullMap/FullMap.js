@@ -130,8 +130,8 @@ export default function FullMap() {
             position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
             icon={{
               url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(22, 22),
+              // origin: new window.google.maps.Point(0, 0),
+              // anchor: new window.google.maps.Point(22, 22),
             }}
             onClick={() => {
               setSelected(tempMarker);
