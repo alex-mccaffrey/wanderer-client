@@ -97,7 +97,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
             key={tempMarker.time}
             draggable={true}
             position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
-            icon={{ url: "http://maps.google.com/mapfiles/ms/icons/blue.png" }}
+            icon={'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'}
             onDragEnd={(e) => onMarkerDragEnd(e)}
             onClick={() => {
               setSelected(tempMarker);
