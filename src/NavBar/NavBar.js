@@ -24,11 +24,11 @@ const NavBar = (props) => {
             <Link className="nav-link" to="/">
               Home
             </Link>
-            <Link className="nav-link" to="/home">
+            <Link className="nav-link" to="/dashboard">
               Dashboard
             </Link>
 
-            <Link className="nav-link" to="/add-location">
+            <Link className="nav-link" to="/call-out">
               Call Out
             </Link>
 
