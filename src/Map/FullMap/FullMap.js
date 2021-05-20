@@ -72,19 +72,19 @@ export default function FullMap() {
       return markers.map((marker) => (
         <Marker
           key={marker.id}
-          anchor={{
-            lat: parseFloat(marker.latitude),
-            lng: parseFloat(marker.longitude),
-          }}
+          // anchor={{
+          //   lat: parseFloat(marker.latitude),
+          //   lng: parseFloat(marker.longitude),
+          // }}
           position={{
             lat: parseFloat(marker.latitude),
             lng: parseFloat(marker.longitude),
           }}
-          icon={{
-            url: "http://maps.google.com/mapfiles/ms/icons/red.png",
-            origin: new window.google.maps.Point(0, 0),
-            anchor: new window.google.maps.Point(22, 22),
-          }}
+          // icon={{
+          //   url: "http://maps.google.com/mapfiles/ms/icons/red.png",
+          //   origin: new window.google.maps.Point(0, 0),
+          //   anchor: new window.google.maps.Point(22, 22),
+          // }}
           onClick={() => {
             setSelected(marker);
             setCenter({
@@ -126,13 +126,13 @@ export default function FullMap() {
         <div className="tempMarker">
           <Marker
             key={tempMarker.time}
-            anchor={{ lat: tempMarker.lat, lng: tempMarker.lng }}
+            //anchor={{ lat: tempMarker.lat, lng: tempMarker.lng }}
             position={{ lat: tempMarker.lat, lng: tempMarker.lng }}
-            icon={{
-              url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(22, 22),
-            }}
+            // icon={{
+            //   url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
+            //   origin: new window.google.maps.Point(0, 0),
+            //   anchor: new window.google.maps.Point(22, 22),
+            // }}
             onClick={() => {
               setSelected(tempMarker);
             }}
