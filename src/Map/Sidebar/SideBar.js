@@ -27,7 +27,7 @@ function SideBar(props) {
                 className="sidebar-markers"
                 onClick={() => {
                   onClickZoom(marker);
-                  setSelected(null);
+                  setSelected(marker);
                 }}
               >
                 {marker.name} was here{" "}
