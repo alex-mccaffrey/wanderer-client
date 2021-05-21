@@ -6,7 +6,7 @@ import Locate from "../Locate/Locate";
 import AuthApiService from "../../services/auth-api-service";
 import {
   GoogleMap,
-  useLoadScript,
+  //useLoadScript,
   useJsApiLoader,
   Marker,
   InfoWindow,
@@ -14,7 +14,7 @@ import {
 import moment from "moment";
 
 export default function FullMap() {
-  const libraries = ["places"];
+  //const libraries = ["places"];
   const mapContainerStyle = {
     width: "65vw",
     height: "70vh",
@@ -65,7 +65,7 @@ export default function FullMap() {
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
+    //libraries,
   });
 
   const markerMap = () => {
@@ -89,9 +89,9 @@ export default function FullMap() {
     }
   };
 
-  const onMapClick = React.useCallback((e) => {
+  const onMapClick = React.useCallback(() => {
     setSelected(null);
-  });
+  }, []);
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {

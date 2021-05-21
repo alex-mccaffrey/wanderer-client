@@ -4,7 +4,7 @@ import MapStyles from "../FullMap/mapStyles";
 import Locate from "../Locate/Locate";
 import {
   GoogleMap,
-  useLoadScript,
+  //useLoadScript,
   useJsApiLoader,
   Marker,
   InfoWindow,
@@ -12,7 +12,7 @@ import {
 import { formatRelative } from "date-fns";
 
 export default function AddLocationMap({ name, notes, setNewMarker }) {
-  const libraries = ["places"];
+  //const libraries = ["places"];
   const mapContainerStyle = {
     width: "65vw",
     height: "65vh",
@@ -55,7 +55,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
+    //libraries,
   });
 
   const onMapClick = React.useCallback((e) => {

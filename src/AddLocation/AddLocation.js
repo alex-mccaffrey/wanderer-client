@@ -26,7 +26,7 @@ function AddLocation(props) {
     };
     AuthApiService.postMarker(addedMarker).then((marker) => {
       props.history.push({
-        pathname: "/home",
+        pathname: "/dashboard",
       });
     });
   };
