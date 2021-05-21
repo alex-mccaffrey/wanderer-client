@@ -5,6 +5,7 @@ import Locate from "../Locate/Locate";
 import {
   GoogleMap,
   useLoadScript,
+  useJsApiLoader,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
@@ -52,7 +53,7 @@ export default function AddLocationMap({ name, notes, setNewMarker }) {
     fullscreenControl: true,
   };
 
-  const { isLoaded, loadError } = useLoadScript({
+  const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
