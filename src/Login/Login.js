@@ -18,7 +18,7 @@ const Login = (props) => {
       .loginUser(user)
       .then((loginResponse) => {
         TokenService.saveAuthToken(loginResponse.authToken);
-        props.history.push("/home");
+        props.history.push("/dashboard");
       })
       .catch((res) => {
         setLoggedInState("");

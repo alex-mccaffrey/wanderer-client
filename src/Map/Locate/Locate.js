@@ -8,9 +8,15 @@ export default function Locate({ panTo, setTempMarker }) {
   const locateServices = (e) => {
     e.preventDefault();
     if (loading) {
-      loading.textContent = "Locating....";
+      return (
+        (loading.textContent = "Locating...."),
+        (loading.style.fontWeight = "bold")
+      );
     } else if (addLoad) {
-      addLoad.textContent = "Locating....";
+      return (
+        (addLoad.textContent = "Locating...."),
+        (loading.style.fontWeight = "bold")
+      );
     }
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -25,11 +31,17 @@ export default function Locate({ panTo, setTempMarker }) {
           lng: position.coords.longitude,
         });
         if (loading) {
-          loading.textContent =
-            "Found you! To add a Call Out, just tap 'Call Out' in the navigation menu.";
+          return (
+            (loading.textContent =
+              "Found you! To add a Call Out, just tap 'Call Out' in the navigation menu."),
+            (loading.style.fontWeight = "bold")
+          );
         } else if (addLoad) {
-          addLoad.textContent =
-            "Found you! If it looks ok, press submit. If it needs some adjustment,you can click or drag your pin around until it's just right.";
+          return (
+            (addLoad.textContent =
+              "Found you! If it looks ok, press submit. If it needs some adjustment,you can click or drag your pin around until it's just right."),
+            (loading.style.fontWeight = "bold")
+          );
         }
       },
       () => {
@@ -37,17 +49,13 @@ export default function Locate({ panTo, setTempMarker }) {
           return (
             (loading.textContent =
               "Uh oh...looks like there was a problem getting your location"),
-            alert(
-              "There was an error getting your location. Please check the location settings in your browser."
-            )
+            (loading.style.color = "Red")
           );
         } else if (addLoad) {
           return (
             (addLoad.textContent =
               "Uh oh...looks like there was a problem getting your location"),
-            alert(
-              "There was an error getting your location. Please check the location settings in your browser."
-            )
+            (loading.style.color = "Red")
           );
         }
       }
