@@ -86,6 +86,7 @@ export default function FullMap() {
           //   anchor: new window.google.maps.Point(22, 22),
           // }}
           onClick={() => {
+            console.log(marker.timeAdded)
             setSelected(marker);
             setCenter({
               lat: parseFloat(marker.latitude),
