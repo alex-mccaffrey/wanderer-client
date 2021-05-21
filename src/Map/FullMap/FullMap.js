@@ -63,7 +63,7 @@ export default function FullMap() {
   };
 
   const { isLoaded, loadError } = useLoadScript({
-    //googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
@@ -72,21 +72,11 @@ export default function FullMap() {
       return markers.map((marker) => (
         <Marker
           key={marker.id}
-          // anchor={{
-          //   lat: parseFloat(marker.latitude),
-          //   lng: parseFloat(marker.longitude),
-          // }}
           position={{
             lat: parseFloat(marker.latitude),
             lng: parseFloat(marker.longitude),
           }}
-          // icon={{
-          //   url: "http://maps.google.com/mapfiles/ms/icons/red.png",
-          //   origin: new window.google.maps.Point(0, 0),
-          //   anchor: new window.google.maps.Point(22, 22),
-          // }}
           onClick={() => {
-            console.log(marker.timeAdded)
             setSelected(marker);
             setCenter({
               lat: parseFloat(marker.latitude),
