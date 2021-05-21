@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Wanderer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live app: (https://wanderer.vercel.app/)
+<br />
+API Repo: (https://github.com/alex-mccaffrey/wanderer-api)
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- Summary
+- Screenshots
+- Technologies
 
-### `npm start`
+## Summary
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Wanderer was developed to bridge the gap between safety and privacy. Location awareness of friends and family can be a great safety tool. But knowing their exact location at all times can sometimes be a breach of privacy. Wanderer allows users to decide when to share their location with others, leaving a trail of breadcrumbs with their whereabouts.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
+### Landing Page 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="./src/images/landing.jpeg" alt="wanderer landing page" width="450" >
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Login
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="./src/images/login.jpeg" alt="wanderer login page" width="450" >
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### User Dashboard
 
-### `npm run eject`
+<img src="./src/images/dashboard.jpeg" alt="wanderer user dashboard" width="450" >
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Call Out: Add Your Location
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="./src/images/call-out.jpeg" alt="wanderer call out add location" width="450" >
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Technologies
 
-## Learn More
+For this app, I used:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React.js
+- Node.js
+- PostgreSQL
+- Express
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Upcoming Features:
+- Tiered accounts (owner, members)
